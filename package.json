@@ -21,11 +21,10 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@hello.softis/andromeda-react": "6.0.1",
+    "@houstonicons/pro": "0.2.0",
     "dotenv": "16.4.7",
-    "fs": "0.0.1-security",
     "next": "15.1.5",
-    "path": "0.12.7",
-    "puppeteer": "24.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "zod": "3.24.1"
