@@ -1,106 +1,133 @@
-<h1 align="center" style="font-weight: bold;">simpleList</h1>
-
 <p align="center">
- <a href="#tech">Technologies</a> • 
- <a href="#started">Getting Started</a> • 
-  <a href="#colab">Collaborators</a> •
- <a href="#contribute">Contribute</a>
+  <img src="./public/logo.svg" alt="simpleList logo" />
 </p>
 
-<p align="center">
-    <b>Simple description of what your project do or how to use it</b>
-</p>
+<h1 align="center">simpleList</h1>
+<p align="center">Your tasks, simplified. Create, manage, and conquer your to-do lists with ease.</p>
+
+<h3 align="center">
+  <!-- Version Badge -->
+  <a href="https://github.com/castrogusttavo/simpleList/releases">
+    <img alt="Releases" src="https://img.shields.io/github/v/release/castrogusttavo/simplelist?style=for-the-badge&labelColor=1C1E26&color=353DF4">
+  </a>  
+
+  <!-- License Badge -->
+  <a href="./LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/license%20-MIT-1C1E26?style=for-the-badge&labelColor=1C1E26&color=353DF4">
+  </a>
+
+  <!-- X Badge -->
+  <a href="https://x.com/gustta_dev" target="_blank">
+    <img alt="Follow on X: gustta_dev" src="https://img.shields.io/twitter/follow/gustta_dev.svg?style=for-the-badge&labelColor=1C1E26&color=353DF4&logo=x" />
+  </a>
+</h3>
+
+<br />
+
+## Features
+- 👨‍🚀 Create new lists and add items in seconds
+- ⚙️ Drag, drop and rearrange your items effortlessly
+- 💅 Dark Theme and custom themes
+- 🚀 Cross-platform (Web, Windows)
+- ✔️ Default shortcuts and lists
+- 📦 Offline support (alpha)
 
 <p align="center">
-     <a href="PROJECT__URL">📱 Visit this Project</a>
+  <img src="public/preview.png" alt="Minimal dark-themed task manager UI showcasing lists and task organization with icons and labels.">
 </p>
 
-<h2 id="layout">🎨 Layout</h2>
+## Installation
 
-<p align="center">
-    <img src="../.github/example.png" alt="Image Example" width="400px">
-    <img src="../.github/example.png" alt="Image Example" width="400px">
-</p>
+> ⚠️ **For Web/Windows:** The app is in waitlist mode. Join the [waitlist](https://simplelist.vercel.app/waitlist) to be notified when it's ready.
 
-<h2 id="technologies">💻 Technologies</h2>
+## Usage & Settings
 
-- list of all technologies you used
-- react
-- styled components
-- another example
+### 1. **Install SimpleList**
+Create, manage, and conquer your to-do lists
+with ease
 
-<h2 id="started">🚀 Getting started</h2>
+### 2. **Create your first list**
+Tap the '+' button and start adding items to
+your list
 
-Here you describe how to run your project locally
+### 3. **Stay organized effortlessly**
+Manage, update, and complete tasks with ease
 
-<h3>Prerequisites</h3>
+## Default Shortcuts
 
-Here you list all prerequisites necessary for running your project. For example:
-
-- [NodeJS](https://github.com/)
-- [Git 2](https://github.com)
-
-<h3>Cloning</h3>
-
-How to clone your project
-
-```bash
-git clone your-project-url-in-github
-```
-
-<h3>Starting</h3>
-
-How to start your project
-
-```bash
-cd project-name
-npm some-command-to-run
-```
-
-<h2 id="colab">🤝 Collaborators</h2>
-
-Special thank you for all people that contributed for this project.
+> ⚠️ **For Web/Windows:** The app is in waitlist mode. Join the [waitlist](https://simplelist.vercel.app/waitlist) to be notified when it's ready.
 
 <table>
-  <tr>
-    <td align="center">
-      <a href="#">
-        <img src="https://avatars.githubusercontent.com/u/61896274?v=4" width="100px;" alt="Fernanda Kipper Profile Picture"/><br>
-        <sub>
-          <b>Fernanda Kipper</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="#">
-        <img src="https://t.ctcdn.com.br/n7eZ74KAcU3iYwnQ89-ul9txVxc=/400x400/smart/filters:format(webp)/i490769.jpeg" width="100px;" alt="Elon Musk Picture"/><br>
-        <sub>
-          <b>Elon Musk</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="#">
-        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto do Steve Jobs"/><br>
-        <sub>
-          <b>Steve Jobs</b>
-        </sub>
-      </a>
-    </td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><kbd>Ctrl</kbd> + <kbd>K</kbd></td>
+      <td>Focus Search Bar</td>
+    </tr>
+    <tr>
+      <td><kbd>Enter</kbd></td>
+      <td>Create new list or task</td>
+    </tr>
+    <tr>
+      <td><kbd>Ctrl</kbd> + <kbd>↑</kbd> / <kbd>Ctrl</kbd> + <kbd>↓</kbd></td>
+      <td>Move task</td>
+    </tr>
+    <tr>
+      <td><kbd>Ctrl</kbd> + <kbd>H</kbd></td>
+      <td>Hide completed tasks</td>
+    </tr>
+    <tr>
+      <td><kbd>Ctrl</kbd> + <kbd>M</kbd></td>
+      <td>Switch task view mode (detailed/minimal)</td>
+    </tr>
+    <tr>
+      <td><kbd>Ctrl</kbd> + <kbd>Z</kbd></td>
+      <td>Undo last action</td>
+    </tr>
+    <tr>
+      <td><kbd>Ctrl</kbd> + <kbd>;</kbd></td>
+      <td>Open settings</td>
+    </tr>
+  </tbody>
 </table>
 
-<h2 id="contribute">📫 Contribute</h2>
+## Contributing
 
-Here you will explain how other developers can contribute to your project. For example, explaining how can create their branches, which patterns to follow and how to open an pull request
+We welcome contributions! To get started:
 
-1. `git clone https://github.com/Fernanda-Kipper/text-editor.git`
-2. `git checkout -b feature/NAME`
-3. Follow commit patterns
-4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
+1. Clone the repository.
+2. Install dependencies:
+   ```sh
+   pnpm i
+   ```
+3. Run the development environment:
+   ```sh
+   pnpm dev
+   ```
 
-<h3>Documentations that might help</h3>
+## Author
 
-[📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
+👤 **Gusttavo Castro**
 
-[💾 Commit pattern](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+- X: [@gustta_dev](https://twitter.com/gustta_dev)
+- GitHub: [@castrogusttavo](https://github.com/castrogusttavo)
+- LinkedIn: [@castrogusttavo](https://linkedin.com/in/castrogusttavo)
+
+## Show Your Support
+
+If this project helped you, give it a ⭐️!
+
+--- 
+<p align="center">
+  <a href="https://simplelist.vercel.app/">
+    <img src="./public/icons/waitlist.svg" width="149" alt="Join the waitlist for early access" />
+  </a>
+</p>
+<p align="center">
+  <span>Join the waitlist for early access</span>
+</p>
