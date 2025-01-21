@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="./public/logo.svg" alt="simpleList logo" />
-</p>
+<img src="./public/logo.svg" alt="simpleList logo" align="center" />
 
 <h1 align="center">simpleList</h1>
 <p align="center">Your tasks, simplified. Create, manage, and conquer your to-do lists with ease.</p>
