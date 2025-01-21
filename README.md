@@ -33,7 +33,7 @@
 - 📦 Offline support (alpha)
 
 <p align="center">
-  <img src="public/preview.png" alt="Minimal dark-themed task manager UI showcasing lists and task organization with icons and labels.">
+  <img src="public/preview.svg" alt="Minimal dark-themed task manager UI showcasing lists and task organization with icons and labels.">
 </p>
 
 ## Installation
