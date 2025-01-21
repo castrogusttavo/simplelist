@@ -1,130 +1,106 @@
+<h1 align="center" style="font-weight: bold;">simpleList</h1>
+
 <p align="center">
-    <img src="public/Boilerplate%20banner%20-%2001.jpg" alt="Next.js Boilerplate">
+ <a href="#tech">Technologies</a> • 
+ <a href="#started">Getting Started</a> • 
+  <a href="#colab">Collaborators</a> •
+ <a href="#contribute">Contribute</a>
 </p>
 
 <p align="center">
-    <img src="public/Frameworks.svg" alt="Next.js Boilerplate">
+    <b>Simple description of what your project do or how to use it</b>
 </p>
 
-<br />
+<p align="center">
+     <a href="PROJECT__URL">📱 Visit this Project</a>
+</p>
 
-<div align="center">
-    <div align="center"><strong>Non-opinionated TypeScript starter for Next.js</strong></div>
-    <div align="center">Highly scalable foundation with the best DX. All the tools you need to build your next project.</div>
-</div>
+<h2 id="layout">🎨 Layout</h2>
 
-<br />
+<p align="center">
+    <img src="../.github/example.png" alt="Image Example" width="400px">
+    <img src="../.github/example.png" alt="Image Example" width="400px">
+</p>
 
-<div align="center">
-  <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&style=flat-square&color=5e17eb&labelColor=000000" alt="PRs welcome!" />
+<h2 id="technologies">💻 Technologies</h2>
 
-  <img alt="License" src="https://img.shields.io/github/license/castrogusttavo/nextjs-boilerplate?style=flat-square&color=5e17eb&labelColor=000000">
+- list of all technologies you used
+- react
+- styled components
+- another example
 
-  <a href="https://x.com/intent/follow?screen_name=gustta_dev">
-    <img src="https://img.shields.io/twitter/follow/gustta_dev?style=flat-square&color=5e17eb&labelColor=000000" alt="Follow @gustta_dev" />
-  </a>
-</div>
+<h2 id="started">🚀 Getting started</h2>
 
-<div align="center">
-  <sub>Created by <a href="https://x.com/gustta_dev">Gusttavo Castro</a> with the help of many <a href="https://github.com/castrogusttavo/next-boilerplate/graphs/contributors">wonderful contributors</a>.</sub>
-</div>
+Here you describe how to run your project locally
 
-<br />
+<h3>Prerequisites</h3>
 
-## Features
+Here you list all prerequisites necessary for running your project. For example:
 
-- ⚡️ Next.js 15 (App Router)
-- ⚛️ React 19
-- ⛑ TypeScript
-- 📏 Biome — To find and fix problems in your code
-- 🐶 Husky — For running scripts before committing
-- 🚓 Commitlint — To make sure your commit messages follow the convention
-- 🖌 Renovate — To keep your dependencies up to date
-- 👷 PR Workflow — Run Type Check & Linters on Pull Requests
-- 🗂 Path Mapping — Import components or images using the `@` prefix
-- 🔐 CSP — Content Security Policy for enhanced security (default minimal policy)
-- 🧳 T3 Env — Type-safe environment variables
-- 🪧 Redirects — Easily add redirects to your application
+- [NodeJS](https://github.com/)
+- [Git 2](https://github.com)
 
-## Quick Start
+<h3>Cloning</h3>
 
-The best way to start with this template is using [Create Next App](https://nextjs.org/docs/api-reference/create-next-app).
-
-```
-# pnpm
-pnpm create next-app -e https://github.com/castrogusttavo/nextjs-boilerplate
-
-# yarn
-yarn create next-app -e https://github.com/castrogusttavo/nextjs-boilerplate
-
-# npm
-npx create-next-app -e https://github.com/castrogusttavo/nextjs-boilerplate
-```
-
-### Development
-
-To start the project locally, run:
+How to clone your project
 
 ```bash
-pnpm dev
+git clone your-project-url-in-github
 ```
 
-Open `http://localhost:3000` with your browser to see the result.
+<h3>Starting</h3>
 
-## Documentation
+How to start your project
 
-### Requirements
-
-- [Node.js >= 20](https://nodejs.org/)
-- [pnpm >= 9](https://pnpm.io/)
-
-### Directory Structure
-
-- [`.github`](.github) - GitHub configuration including the CI workflows.<br>
-- [`.husky`](.husky) - Husky configuration and hooks.<br>
-- [`public`](./public) - Static assets such as robots.txt, images, and favicon.<br>
-- [`app`](./app) - Application source code.<br>
-
-### Tasks (Scripts)
-
-- `pnpm dev` — Starts the application in development mode at `http://localhost:3000`.
-- `pnpm build` — Creates an optimized production build of your application.
-- `pnpm start` — Starts the application in production mode.
-- `pnpm lint` — Runs Biome for all files in the `app` directory.
-- `pnpm format` — Runs Biome for fix all files in the `app` directory .
-- `pnpm format:check` — Checks all files in the `app` directory for correct formatting.
-
-### Path Mapping
-
-This boilerplate uses the `@` prefix to import components or images. This is configured in the `tsconfig.json` file.
-
-```tsx
-import { Button } from '@/components/Button';
-// To import images or other files from the public folder
-import avatar from '@/public/avatar.png';
+```bash
+cd project-name
+npm some-command-to-run
 ```
-### Switch to Yarn/npm
 
-This starter uses Deno by default, but this choice is yours. If you'd like to switch to Yarn/npm, delete the deno.lock file, install the dependencies with Yarn/npm, change the CI workflow, and Husky Git hooks to use Yarn/npm commands.
+<h2 id="colab">🤝 Collaborators</h2>
 
-> **Note:** If you use Yarn, make sure to follow these steps from the [Husky documentation](https://typicode.github.io/husky/troubleshoot.html#yarn-on-windows) so that Git hooks do not fail with Yarn on Windows.
+Special thank you for all people that contributed for this project.
 
-### Environment Variables
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/61896274?v=4" width="100px;" alt="Fernanda Kipper Profile Picture"/><br>
+        <sub>
+          <b>Fernanda Kipper</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://t.ctcdn.com.br/n7eZ74KAcU3iYwnQ89-ul9txVxc=/400x400/smart/filters:format(webp)/i490769.jpeg" width="100px;" alt="Elon Musk Picture"/><br>
+        <sub>
+          <b>Elon Musk</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto do Steve Jobs"/><br>
+        <sub>
+          <b>Steve Jobs</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
-We use [Dot Env](https://www.npmjs.com/package/dotenv) to manage environment variables. Create a `.env.local` file in the root of the project and add your environment variables there.
+<h2 id="contribute">📫 Contribute</h2>
 
-When adding additional environment variables, the schema in `./app/lib/env/client.ts` or `./app/lib/env/server.ts` should be updated accordingly.
+Here you will explain how other developers can contribute to your project. For example, explaining how can create their branches, which patterns to follow and how to open an pull request
 
-### Redirects
+1. `git clone https://github.com/Fernanda-Kipper/text-editor.git`
+2. `git checkout -b feature/NAME`
+3. Follow commit patterns
+4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
 
-To add redirects, update the `redirects` array in `./redirects.ts`. It's typed, so you'll get autocompletion for the properties.
+<h3>Documentations that might help</h3>
 
-### CSP (Content Security Policy)
+[📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
 
-The Content Security Policy (CSP) is a security layer that helps to detect and mitigate certain types of attacks, including Cross-Site Scripting (XSS) and data injection attacks. The CSP is implemented in the `next.config.ts` file.
-
-It contains a default and minimal policy that you can customize to fit your application needs. It's a foundation to build upon.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
+[💾 Commit pattern](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)

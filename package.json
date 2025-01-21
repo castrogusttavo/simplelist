@@ -1,16 +1,15 @@
 {
-  "name": "next-boilerplate",
-  "description": "A simple Next.js boilerplate",
+  "name": "simplelist",
+  "description": "Organize your tasks easily.",
   "version": "0.0.1",
   "private": true,
   "type": "module",
   "author": "Gusttavo Castro (castrogusttavo)",
-  "license": "MIT",
+  "license": "CSP-1.0",
   "keywords": [
-    "nextjs",
-    "starter",
-    "typescript",
-    "boilerplate"
+    "simplelist",
+    "tasks",
+    "organize"
   ],
   "scripts": {
     "dev": "next dev --turbopack",
