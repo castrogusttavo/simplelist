@@ -3,6 +3,7 @@
 import { Button } from '@/app/components/button';
 import { CreateNewListInput, CreateNewTaskInput } from '@/app/components/input';
 import { Progress } from '@/app/components/progress';
+import { SearchBar } from '@/app/components/searchBar';
 import { Title } from '@/app/components/title';
 import { Add01Icon } from '@houstonicons/pro';
 
@@ -23,6 +24,7 @@ export default function Home() {
           strokeWidth={1.5}
         />
       </Button>
+      <SearchBar />
     </div>
   );
 }

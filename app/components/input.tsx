@@ -19,7 +19,7 @@ export function CreateNewListInput() {
         <input
           type='text'
           placeholder='Create a new list'
-          className='placeholder-[#F7F7F7]/25 placeholder:font-semibold placeholder:text-sm bg-transparent focus:placeholder-[#F7F7F7]/70 flex-1 w-full outline-none border-none transition-all duration-500'
+          className='placeholder-[#F7F7F7]/25 placeholder:font-semibold bg-transparent focus:placeholder-[#F7F7F7]/70 flex-1 w-full outline-none border-none transition-all duration-500 text-[#F7F7F7]'
         />
       </div>
     </div>
@@ -42,7 +42,7 @@ export function CreateNewTaskInput() {
         <input
           type='text'
           placeholder='Create a new list'
-          className='placeholder-[#F7F7F7]/25 placeholder:font-semibold placeholder:text-sm bg-transparent focus:placeholder-[#F7F7F7]/70 flex-1 w-full outline-none border-none transition-all duration-500'
+          className='placeholder-[#F7F7F7]/25 placeholder:font-semibold bg-transparent focus:placeholder-[#F7F7F7]/70 flex-1 w-full outline-none border-none transition-all duration-500 text-[#F7F7F7]'
         />
       </div>
     </div>
