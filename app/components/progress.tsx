@@ -14,8 +14,7 @@ export function Progress({ totalTasks, completedTasks }: ProgressProps) {
   return (
     <div className='flex gap-3 items-center'>
       <div className='w-8 h-8'>
-        {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
-        <svg aria-label='Progress' viewBox='0 0 100 100'>
+        <svg aria-hidden='true' viewBox='0 0 100 100'>
           <path
             d='M 50,50 m 0,-42 a 42,42 0 1 1 0,84 a 42,42 0 1 1 0,-84'
             strokeWidth='16'

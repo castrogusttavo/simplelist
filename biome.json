@@ -21,9 +21,24 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
+			"a11y": {
+				"noSvgWithoutTitle": "off",
+				"useButtonType": "off",
+				"useAltText": "off",
+				"noAutofocus": "off",
+				"noPositiveTabindex": "off"
+			},
 			"complexity": {
 				"noForEach": "off",
 				"noUselessConstructor": "off"
+			},
+			"suspicious": {
+				"noDebugger": "off",
+				"noConsoleLog": "info"
+			},
+			"style": {
+				"noShoutyConstants": "off",
+				"useNamingConvention": "off"
 			}
 		}
 	},

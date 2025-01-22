@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.overlay::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 20px;
+	pointer-events: none;
+	border: 1px solid hsla(0, 0%, 100%, 0.07);
+	mask-image: linear-gradient(175deg, #000, transparent 55%);
+}
