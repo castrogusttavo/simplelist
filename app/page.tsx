@@ -3,6 +3,7 @@
 import { Button } from '@/app/components/button';
 import { CreateNewListInput, CreateNewTaskInput } from '@/app/components/input';
 import { Progress } from '@/app/components/progress';
+import { ColorPicker, TaskCompleted } from '@/app/components/radioButton';
 import { SearchBar } from '@/app/components/searchBar';
 import { Title } from '@/app/components/title';
 import { Add01Icon } from '@houstonicons/pro';
@@ -25,6 +26,11 @@ export default function Home() {
         />
       </Button>
       <SearchBar />
+      <TaskCompleted values={['r1', 'r2', 'r3']} />
+      <ColorPicker
+        values={['r1', 'r2', 'r3']}
+        bgPicker={['#FFF', '#000', '#282828']}
+      />
     </div>
   );
 }
