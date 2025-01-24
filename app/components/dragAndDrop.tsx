@@ -23,7 +23,7 @@ export function DragAndDrop({
             <Copy01Icon
               color={'#A1A1A1'}
               size={24}
-              type={'rounded'}
+              type={'rounded-sm'}
               variant={'stroke'}
               strokeWidth={1.5}
             />
@@ -35,7 +35,7 @@ export function DragAndDrop({
             <Delete02Icon
               color={'#A1A1A1'}
               size={24}
-              type={'rounded'}
+              type={'rounded-sm'}
               variant={'stroke'}
               strokeWidth={1.5}
             />
@@ -49,7 +49,7 @@ export function DragAndDrop({
         <DragDropVerticalIcon
           color={'#A1A1A1'}
           size={24}
-          type={'rounded'}
+          type={'rounded-sm'}
           variant={'stroke'}
           strokeWidth={3}
         />

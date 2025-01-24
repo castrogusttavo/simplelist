@@ -22,7 +22,7 @@ export function ListContainer({
             color={iconColor}
             iconName={iconName}
             size={24}
-            type={'rounded'}
+            type={'rounded-sm'}
             variant={'stroke'}
             strokeWidth={1.5}
           />

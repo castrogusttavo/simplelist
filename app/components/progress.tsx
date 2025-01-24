@@ -26,7 +26,7 @@ export function Progress({ totalTasks, completedTasks }: ProgressProps) {
             d='M 50,50 m 0,-42 a 42,42 0 1 1 0,84 a 42,42 0 1 1 0,-84'
             strokeWidth='16'
             fillOpacity='0'
-            className='stroke-[#f8f8f8]/70 rounded-sm transition-all duration-500'
+            className='stroke-[#f8f8f8]/70 rounded-xs transition-all duration-500'
             style={{
               strokeDasharray: '263.8947px',
               strokeDashoffset: completedTasksProgress,

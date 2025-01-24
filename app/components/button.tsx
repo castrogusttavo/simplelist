@@ -34,7 +34,7 @@ export function IconSettings({ children, hover, ...props }: ButtonProps) {
 export function ButtonDone() {
   return (
     <button>
-      <CheckmarkCircle02Icon type={'rounded'} variant={'solid'} />
+      <CheckmarkCircle02Icon type={'rounded-sm'} variant={'solid'} />
     </button>
   );
 }
@@ -42,7 +42,7 @@ export function ButtonDone() {
 export function ButtonClear() {
   return (
     <button>
-      <MultiplicationSignCircleIcon type={'rounded'} variant={'stroke'} />
+      <MultiplicationSignCircleIcon type={'rounded-sm'} variant={'stroke'} />
     </button>
   );
 }

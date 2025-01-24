@@ -22,7 +22,7 @@ export default function Home() {
         <Add01Icon
           color='#F7F7F7'
           size={24}
-          type={'rounded'}
+          type={'rounded-sm'}
           variant={'stroke'}
           strokeWidth={1.5}
         />

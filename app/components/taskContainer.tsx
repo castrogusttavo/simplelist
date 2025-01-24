@@ -15,7 +15,7 @@ export function TaskContainer({ id, name }: TaskProps) {
 
   return (
     <div
-      className={`flex justify-between items-center px-3 py-4 rounded-[20px] transition-all duration-500 group backdrop-blur-sm ${isChecked ? 'bg-[#F7F7F704] hover:bg-[#F7F7F7]/5' : 'bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10'}`}
+      className={`flex justify-between items-center px-3 py-4 rounded-[20px] transition-all duration-500 group backdrop-blur-xs ${isChecked ? 'bg-[#F7F7F704] hover:bg-[#F7F7F7]/5' : 'bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10'}`}
     >
       <div className='flex gap-3 items-center'>
         <TaskCheckBox

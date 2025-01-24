@@ -12,7 +12,7 @@ export function SearchBar({ ...props }: SearchBarProps) {
         <Search01Icon
           color='#F7F7F7'
           size={24}
-          type={'rounded'}
+          type={'rounded-sm'}
           variant={'stroke'}
           strokeWidth={1.5}
         />
@@ -20,7 +20,7 @@ export function SearchBar({ ...props }: SearchBarProps) {
       <input
         placeholder='Search list...'
         {...props}
-        className='flex-1 placeholder-[#F7F7F7]/25 group-focus-within:placeholder-[#F7F7F7]/70 bg-transparent border-none outline-none text-[#F7F7F7] transition-all duration-500'
+        className='flex-1 placeholder-[#F7F7F7]/25 group-focus-within:placeholder-[#F7F7F7]/70 bg-transparent border-none outline-hidden text-[#F7F7F7] transition-all duration-500'
       />
     </div>
   );
