@@ -3,7 +3,7 @@ import { Icon } from '@houstonicons/pro';
 
 interface ListProps {
   name: string;
-  iconColor?: string | '#F7F7F704';
+  iconColor: string;
   iconName: string;
   totalTasks: number;
 }
@@ -17,12 +17,12 @@ export function ListContainer({
   return (
     <div className='flex justify-between items-center p-3 rounded-[20px] bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10 overlay'>
       <div className='flex gap-4 items-center'>
-        <IconSettings hover>
+        <IconSettings>
           <Icon
             color={iconColor}
             iconName={iconName}
             size={24}
-            type={'rounded-sm'}
+            type={'rounded'}
             variant={'stroke'}
             strokeWidth={1.5}
           />

@@ -1,18 +1,14 @@
-import {
-  CheckmarkCircle02Icon,
-  MultiplicationSignCircleIcon,
-} from '@houstonicons/pro';
-import type { ComponentProps, ReactNode } from 'react';
+import { Cancel01Icon, CheckmarkCircle02Icon } from '@houstonicons/pro';
+import { type ComponentProps, type ReactNode, useState } from 'react';
 
 interface ButtonProps extends ComponentProps<'button'> {
-  children: ReactNode;
-  hover?: boolean;
+  children?: ReactNode;
 }
 
 export function Button({ children, ...props }: ButtonProps) {
   return (
     <button
-      className='w-11 h-11 flex p-2.5 justify-center items-center rounded-full bg-[#282828]/70 hover:bg-[#282828]/100 backdrop-blur-[25px] shadow-[2px_4px_16px_0px_rgba(247,247,247,0.07)_inset] button-overlay transition-all border-t border-[#FFF]/10'
+      className='w-11 h-11 flex p-2.5 justify-center items-center rounded-full bg-[#282828]/70 hover:bg-[#F7F7F7]/15 backdrop-blur-[25px] shadow-[2px_4px_16px_0px_rgba(247,247,247,0.07)_inset] button-overlay transition-all border-t border-[#FFF]/10'
       {...props}
     >
       {children}
@@ -20,29 +16,57 @@ export function Button({ children, ...props }: ButtonProps) {
   );
 }
 
-export function IconSettings({ children, hover, ...props }: ButtonProps) {
+export function IconSettings({ children, ...props }: ButtonProps) {
+  const [clicked, setClicked] = useState(false);
+
+  const handleClick = () => {
+    setClicked(true);
+    setTimeout(() => setClicked(false), 300);
+  };
+
   return (
     <button
-      className={`w-11 h-11 flex p-2.5 justify-center items-center rounded-full transition-all ${hover === true ? 'bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10' : ''}`}
+      className={`w-11 h-11 flex p-2.5 justify-center items-center rounded-full transition-all ${clicked ? 'bg-[#282828]/50' : 'bg-[#F7F7F7]/5'}`}
+      onClick={handleClick}
       {...props}
     >
-      {children}
+      <div
+        className={`transition-transform ${clicked ? 'scale-90' : 'scale-100'}`}
+      >
+        {children}
+      </div>
     </button>
   );
 }
 
-export function ButtonDone() {
+export function ButtonDone({ ...props }: ButtonProps) {
   return (
-    <button>
-      <CheckmarkCircle02Icon type={'rounded-sm'} variant={'solid'} />
+    <button
+      {...props}
+      className='opacity-25 hover:opacity-50 my-2.5 transition-all duration-200'
+    >
+      <CheckmarkCircle02Icon
+        type={'rounded'}
+        variant={'solid'}
+        size={24}
+        color={'#F8F8F8'}
+      />
     </button>
   );
 }
 
-export function ButtonClear() {
+export function ButtonClear({ ...props }: ButtonProps) {
   return (
-    <button>
-      <MultiplicationSignCircleIcon type={'rounded-sm'} variant={'stroke'} />
+    <button
+      {...props}
+      className='opacity-100 hover:bg-[#f7f7f7]/20 transition-all p-1 duration-200 rounded-full bg-[#f7f7f71a]'
+    >
+      <Cancel01Icon
+        type={'rounded'}
+        variant={'stroke'}
+        size={12}
+        color={'#F8F8F8'}
+      />
     </button>
   );
 }

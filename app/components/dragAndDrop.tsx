@@ -1,4 +1,15 @@
+import { Button } from '@/app/components/button';
+import { Code } from '@/app/components/code';
 import {
+  TooltipArrow,
+  TooltipContent,
+  TooltipPortal,
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger,
+} from '@/app/components/tooltip';
+import {
+  Add01Icon,
   Copy01Icon,
   Delete02Icon,
   DragDropVerticalIcon,
@@ -19,27 +30,49 @@ export function DragAndDrop({
     <div className={`flex gap-3 transition-all duration-500 ${className}`}>
       {showSettings && (
         <>
-          <button className='opacity-0 transition-opacity duration-700 ease-in-out transition-discrete animate-fade-in'>
-            <Copy01Icon
-              color={'#A1A1A1'}
-              size={24}
-              type={'rounded-sm'}
-              variant={'stroke'}
-              strokeWidth={1.5}
-            />
-          </button>
-          <button
-            className='opacity-0 transition-opacity duration-700 ease-in-out transition-discrete animate-fade-in'
-            /*className='transition-transform duration-200 hover:scale-110'*/
-          >
-            <Delete02Icon
-              color={'#A1A1A1'}
-              size={24}
-              type={'rounded-sm'}
-              variant={'stroke'}
-              strokeWidth={1.5}
-            />
-          </button>
+          <TooltipProvider>
+            <TooltipRoot>
+              <TooltipTrigger>
+                <button className='opacity-0 transition-opacity duration-700 ease-in-out transition-discrete animate-fade-in'>
+                  <Copy01Icon
+                    color={'#A1A1A1'}
+                    size={24}
+                    type={'rounded'}
+                    variant={'stroke'}
+                    strokeWidth={1.5}
+                  />
+                </button>
+              </TooltipTrigger>
+              <TooltipPortal>
+                <TooltipContent>
+                  Duplicate
+                  <TooltipArrow />
+                </TooltipContent>
+              </TooltipPortal>
+            </TooltipRoot>
+          </TooltipProvider>
+
+          <TooltipProvider>
+            <TooltipRoot>
+              <TooltipTrigger>
+                <button className='opacity-0 transition-opacity duration-700 ease-in-out transition-discrete animate-fade-in'>
+                  <Delete02Icon
+                    color={'#A1A1A1'}
+                    size={24}
+                    type={'rounded'}
+                    variant={'stroke'}
+                    strokeWidth={1.5}
+                  />
+                </button>
+              </TooltipTrigger>
+              <TooltipPortal>
+                <TooltipContent>
+                  Delete
+                  <TooltipArrow />
+                </TooltipContent>
+              </TooltipPortal>
+            </TooltipRoot>
+          </TooltipProvider>
         </>
       )}
       <button
@@ -49,7 +82,7 @@ export function DragAndDrop({
         <DragDropVerticalIcon
           color={'#A1A1A1'}
           size={24}
-          type={'rounded-sm'}
+          type={'rounded'}
           variant={'stroke'}
           strokeWidth={3}
         />
