@@ -1,3 +1,7 @@
+import {
+  CheckmarkCircle02Icon,
+  MultiplicationSignCircleIcon,
+} from '@houstonicons/pro';
 import type { ComponentProps, ReactNode } from 'react';
 
 interface ButtonProps extends ComponentProps<'button'> {
@@ -23,6 +27,22 @@ export function IconSettings({ children, hover, ...props }: ButtonProps) {
       {...props}
     >
       {children}
+    </button>
+  );
+}
+
+export function ButtonDone() {
+  return (
+    <button>
+      <CheckmarkCircle02Icon type={'rounded'} variant={'solid'} />
+    </button>
+  );
+}
+
+export function ButtonClear() {
+  return (
+    <button>
+      <MultiplicationSignCircleIcon type={'rounded'} variant={'stroke'} />
     </button>
   );
 }

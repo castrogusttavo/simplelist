@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 export default {
-    darkMode: ["class"],
     content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,13 +8,16 @@ export default {
   ],
   theme: {
   	extend: {
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		},
-  		colors: {}
+          keyframes: {
+              fadeIn: {
+                  '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+              }
+          },
+          animation: {
+                'fade-in': 'fadeIn 0.5s ease-in-out forwards'
+          }
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins:[],
 } satisfies Config;

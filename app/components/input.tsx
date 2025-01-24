@@ -30,7 +30,7 @@ export function CreateNewTaskInput() {
   return (
     <div className='p-3 flex items-center rounded-[20px] bg-[#F7F7F7]/2 z-40 w-full bg-[#FFFFFF]/5 overlay relative'>
       <div className='w-full flex items-center gap-4'>
-        <button className='w-11 h-11 flex p-2.5 justify-center items-center rounded-full'>
+        <IconSettings>
           <CircleIcon
             color='#F7F7F740'
             size={24}
@@ -38,7 +38,7 @@ export function CreateNewTaskInput() {
             variant={'stroke'}
             strokeWidth={2}
           />
-        </button>
+        </IconSettings>
         <input
           type='text'
           placeholder='Create a new list'

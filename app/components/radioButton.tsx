@@ -5,37 +5,7 @@ interface RadioProps {
   className?: string;
   label?: string;
   defaultValue?: string;
-}
-
-interface PickerProps extends RadioProps {
   bgPicker: string[];
-}
-
-export function TaskCompleted({
-  values,
-  className,
-  label,
-  defaultValue,
-}: RadioProps) {
-  return (
-    <RadioGroup.Root
-      className={className}
-      aria-label={label}
-      defaultValue={defaultValue}
-    >
-      {values.map((value) => {
-        return (
-          <RadioGroup.Item
-            key={value}
-            value={value}
-            className='size-6 bg-transparent border-[3px] border-[#F7F7F7]/25 rounded-full m-auto'
-          >
-            <RadioGroup.Indicator className='relative flex size-full items-center justify-center after:block after:size-[11px] after:rounded-full after:bg-gradient-to-b after:from-[#F7F7F7]/90 after:to-[#F7F7F7]/30' />
-          </RadioGroup.Item>
-        );
-      })}
-    </RadioGroup.Root>
-  );
 }
 
 export function ColorPicker({
@@ -44,7 +14,7 @@ export function ColorPicker({
   label,
   defaultValue,
   bgPicker,
-}: PickerProps) {
+}: RadioProps) {
   return (
     <RadioGroup.Root
       className={className}

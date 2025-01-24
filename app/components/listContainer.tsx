@@ -3,7 +3,7 @@ import { Icon } from '@houstonicons/pro';
 
 interface ListProps {
   name: string;
-  iconColor?: string;
+  iconColor?: string | '#F7F7F704';
   iconName: string;
   totalTasks: number;
 }
@@ -17,7 +17,7 @@ export function ListContainer({
   return (
     <div className='flex justify-between items-center p-3 rounded-[20px] bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10 overlay'>
       <div className='flex gap-4 items-center'>
-        <IconSettings>
+        <IconSettings hover>
           <Icon
             color={iconColor}
             iconName={iconName}
@@ -36,17 +36,26 @@ export function ListContainer({
   );
 }
 
-// | 'SmileIcon'
-// | 'Home04Icon'
-// | 'Car01Icon'
-// | 'FireIcon'
-// | 'StarIcon'
-// | 'ViewOffSlashIcon'
-// | 'UserCheck01Icon'
-// | 'Saturn01Icon'
-// | 'SdCardIcon'
-// | 'QuoteUpIcon'
-// | 'FavouriteIcon'
-// | 'Image01Icon'
-// | 'AiMagicIcon'
-// | 'File02Icon'
+// | 'smile'
+// | 'home-04'
+// | 'car-01'
+// | 'fire-02'
+// | 'star'
+// | 'view-off-slash'
+// | 'user-check-01'
+
+// | 'saturn-01'
+// | 'sd-card'
+// | 'quote-up'
+// | 'favourite'
+// | 'image-01'
+// | 'ai-magic'
+// | 'note-04'
+
+// | 'bash'
+// | 'resources-add'
+// | 'checkmark-circel-02'
+// | 'loading-03'
+// | 'airpod-03'
+// | 'chat-bot'
+// | 'command'
