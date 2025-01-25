@@ -1,8 +1,21 @@
+import {
+  TooltipArrow,
+  TooltipContent,
+  TooltipPortal,
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger,
+} from '@/app/components/tooltip';
 import { Cancel01Icon, CheckmarkCircle02Icon } from '@houstonicons/pro';
 import { type ComponentProps, type ReactNode, useState } from 'react';
 
 interface ButtonProps extends ComponentProps<'button'> {
   children?: ReactNode;
+}
+
+interface TooltipProps extends ButtonProps {
+  trigger: ReactNode;
+  description: ReactNode;
 }
 
 export function Button({ children, ...props }: ButtonProps) {
@@ -68,5 +81,27 @@ export function ButtonClear({ ...props }: ButtonProps) {
         color={'#F8F8F8'}
       />
     </button>
+  );
+}
+
+export function ButtonTooltip({
+  trigger,
+  description,
+  ...props
+}: TooltipProps) {
+  return (
+    <TooltipProvider>
+      <TooltipRoot>
+        <TooltipTrigger>
+          <Button {...props}>{trigger}</Button>
+        </TooltipTrigger>
+        <TooltipPortal>
+          <TooltipContent>
+            {description}
+            <TooltipArrow />
+          </TooltipContent>
+        </TooltipPortal>
+      </TooltipRoot>
+    </TooltipProvider>
   );
 }
