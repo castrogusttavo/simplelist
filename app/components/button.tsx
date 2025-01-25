@@ -21,7 +21,7 @@ interface TooltipProps extends ButtonProps {
 export function Button({ children, ...props }: ButtonProps) {
   return (
     <button
-      className='w-11 h-11 flex p-2.5 justify-center items-center rounded-full bg-[#282828]/70 hover:bg-[#F7F7F7]/15 backdrop-blur-[25px] shadow-[2px_4px_16px_0px_rgba(247,247,247,0.07)_inset] button-overlay transition-all border-t border-[#FFF]/10'
+      className='min-w-11 min-h-11 flex p-2.5 justify-center items-center rounded-full bg-[#282828]/70 hover:bg-[#F7F7F7]/15 backdrop-blur-[25px] shadow-[2px_4px_16px_0px_rgba(247,247,247,0.07)_inset] button-overlay transition-all border-t border-[#FFF]/10'
       {...props}
     >
       {children}
@@ -39,7 +39,7 @@ export function IconSettings({ children, ...props }: ButtonProps) {
 
   return (
     <button
-      className={`w-11 h-11 flex p-2.5 justify-center items-center rounded-full transition-all ${clicked ? 'bg-[#282828]/50' : 'bg-[#F7F7F7]/5'}`}
+      className={`min-w-11 min-h-11 flex p-2.5 justify-center items-center rounded-full transition-all ${clicked ? 'bg-[#282828]/50' : 'bg-[#F7F7F7]/5'}`}
       onClick={handleClick}
       {...props}
     >
