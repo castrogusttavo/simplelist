@@ -1,15 +1,17 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function useCheckboxState(id: string): {
   isChecked: boolean;
   handleCheckedChange: (checked: boolean) => void;
 } {
-  const initialCheckedState = useMemo((): boolean => {
-    const savedState = localStorage.getItem(`checkbox-${id}`);
-    return savedState === 'true';
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedState = localStorage.getItem(`checkbox-${id}`);
+      setIsChecked(savedState === 'true');
+    }
   }, [id]);
 
-  const [isChecked, setIsChecked] = useState(initialCheckedState);
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckedChange = (checked: boolean): void => {
     setIsChecked(checked);
