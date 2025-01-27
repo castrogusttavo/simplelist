@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
 import './globals.css';
+import { ApplicationContainer } from '@/app/components/appContainer';
 import { Footer } from '@/app/components/ui/footer';
 import { Header } from '@/app/components/ui/header';
 
@@ -25,7 +26,9 @@ export default function RootLayout({
         className={`${geistSans.variable} antialiased bg-[#1E1E1E] text-zinc-50 w-full h-screen flex flex-col justify-between px-10 py-4`}
       >
         <Header />
-        {children}
+        <ApplicationContainer className={'flex flex-col p-3 overflow-hidden'}>
+          {children}
+        </ApplicationContainer>
         <Footer />
       </body>
     </html>

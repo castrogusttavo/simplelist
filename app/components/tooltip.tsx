@@ -5,6 +5,10 @@ interface TooltipProps {
   children: ReactNode;
 }
 
+interface TooltipContentProps extends TooltipProps {
+  side: 'top' | 'bottom';
+}
+
 export function TooltipProvider({ children }: TooltipProps) {
   return <Tooltip.Provider>{children}</Tooltip.Provider>;
 }
@@ -21,9 +25,12 @@ export function TooltipPortal({ children }: TooltipProps) {
   return <Tooltip.Portal>{children}</Tooltip.Portal>;
 }
 
-export function TooltipContent({ children }: TooltipProps) {
+export function TooltipContent({ children, side }: TooltipContentProps) {
   return (
-    <Tooltip.Content className='bg-[#28282899] rounded-lg text-xs px-2 py-1 overlay-tooltip flex items-center justify-center gap-2 border-none outline-none transition-all duration-200 z-50 backdrop-blur-[50px]'>
+    <Tooltip.Content
+      side={side}
+      className='bg-[#28282899] rounded-lg text-xs px-2 py-1 overlay-tooltip flex items-center justify-center gap-2 border-none outline-none transition-all duration-200 z-[500] backdrop-blur-[50px]'
+    >
       {children}
     </Tooltip.Content>
   );

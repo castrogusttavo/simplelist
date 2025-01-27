@@ -1,5 +1,3 @@
-import { Button } from '@/app/components/button';
-import { Code } from '@/app/components/code';
 import {
   TooltipArrow,
   TooltipContent,
@@ -9,7 +7,6 @@ import {
   TooltipTrigger,
 } from '@/app/components/tooltip';
 import {
-  Add01Icon,
   Copy01Icon,
   Delete02Icon,
   DragDropVerticalIcon,
@@ -44,7 +41,7 @@ export function DragAndDrop({
                 </button>
               </TooltipTrigger>
               <TooltipPortal>
-                <TooltipContent>
+                <TooltipContent side={'top'}>
                   Duplicate
                   <TooltipArrow />
                 </TooltipContent>
@@ -66,7 +63,7 @@ export function DragAndDrop({
                 </button>
               </TooltipTrigger>
               <TooltipPortal>
-                <TooltipContent>
+                <TooltipContent side={'top'}>
                   Delete
                   <TooltipArrow />
                 </TooltipContent>

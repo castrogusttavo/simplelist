@@ -52,3 +52,8 @@
 		rgba(255, 255, 255, 0.02) 100%
 	);
 }
+
+.shadow-modal {
+	box-shadow: 0px 24px 32px -12px rgba(18, 18, 18, 0.1), 2px 4px 16px 0px
+		rgba(247, 247, 247, 0.06) inset;
+}

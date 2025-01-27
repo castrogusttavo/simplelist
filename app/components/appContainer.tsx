@@ -29,7 +29,7 @@ export function Overlay() {
 export function Container({ children, className }: ContainerProps) {
   return (
     <div
-      className={`relative inset-0 w-[480px] h-[496px] rounded-[32px] border-2 border-[#FFFFFF0C] shrink-0 backdrop-blur-xl bg-[#282828B2] ${className}`}
+      className={`relative inset-0 w-[480px] h-[496px] rounded-[32px] border border-[#FFFFFF0C]/20 shrink-0 backdrop-blur-xl bg-[#282828B2] ${className}`}
     >
       {children}
     </div>

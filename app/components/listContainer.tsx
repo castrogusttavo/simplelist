@@ -1,5 +1,8 @@
 import { IconSettings } from '@/app/components/button';
+import { DragAndDrop } from '@/app/components/dragAndDrop';
+import { CustomListModal } from '@/app/components/modal';
 import { Icon } from '@houstonicons/pro';
+import { useState } from 'react';
 
 interface ListProps {
   name: string;
@@ -14,48 +17,46 @@ export function ListContainer({
   iconName,
   totalTasks,
 }: ListProps) {
+  const [showSettings, setShowSettings] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <div className='flex justify-between items-center p-3 rounded-[20px] bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10 overlay'>
-      <div className='flex gap-4 items-center'>
-        <IconSettings>
-          <Icon
-            color={iconColor}
-            iconName={iconName}
-            size={24}
-            type={'rounded'}
-            variant={'stroke'}
-            strokeWidth={1.5}
+    <div className='relative'>
+      <div className='flex justify-between items-center p-3 rounded-[20px] bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10 group transition-all duration-500'>
+        <div className='flex gap-4 items-center'>
+          <IconSettings onClick={() => setIsModalOpen(!isModalOpen)}>
+            <Icon
+              color={iconColor}
+              iconName={iconName}
+              size={24}
+              type={'rounded'}
+              variant={'stroke'}
+              strokeWidth={1.5}
+            />
+          </IconSettings>
+          <span className='text-[#F7F7F7]/70 text-sm font-semibold'>
+            {name}
+          </span>
+        </div>
+        {!showSettings && (
+          <span className='text-[#F7F7F7]/70 text-sm font-medium group-hover:hidden h-6 w-6 text-center'>
+            {totalTasks}
+          </span>
+        )}
+        <div
+          className={`${showSettings ? 'block' : 'hidden group-hover:block'}`}
+        >
+          <DragAndDrop
+            showSettings={showSettings}
+            setShowSettings={setShowSettings}
           />
-        </IconSettings>
-        <p className='text-[#F7F7F7]/70 text-sm font-semibold'>{name}</p>
+        </div>
       </div>
-      <span className='text-[#F7F7F7]/70 text-sm font-medium'>
-        {totalTasks}
-      </span>
+      {isModalOpen && (
+        <div className='fixed z-10'>
+          <CustomListModal />
+        </div>
+      )}
     </div>
   );
 }
-
-// | 'smile'
-// | 'home-04'
-// | 'car-01'
-// | 'fire-02'
-// | 'star'
-// | 'view-off-slash'
-// | 'user-check-01'
-
-// | 'saturn-01'
-// | 'sd-card'
-// | 'quote-up'
-// | 'favourite'
-// | 'image-01'
-// | 'ai-magic'
-// | 'note-04'
-
-// | 'bash'
-// | 'resources-add'
-// | 'checkmark-circel-02'
-// | 'loading-03'
-// | 'airpod-03'
-// | 'chat-bot'
-// | 'command'
