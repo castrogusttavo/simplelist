@@ -1,8 +1,12 @@
-'use client';
-
-import { Button } from '@/app/components/button';
 import { ColorPicker } from '@/app/components/radioButton';
 import { Icon } from '@houstonicons/pro';
+
+interface ListProps {
+  icon: string;
+  color: string;
+  setIcon: (icon: string) => void;
+  setColor: (color: string) => void;
+}
 
 const CustomIcons = [
   'smile',
@@ -22,40 +26,13 @@ const CustomIcons = [
   'bash',
   'resources-add',
   'checkmark-circle-02',
-  'loading-04',
+  'loading-03',
   'airpod-03',
   'chat-bot',
   'command',
 ];
 
-export function EditListModal() {
-  return (
-    <div className='flex flex-col py-4 px-3 rounded-[32px] w-[212px] backdrop-blur bg-[#F7F7F7]/5 shadow-modal z-[90]'>
-      <div className='hover:bg-[#f7f7f71a] w-full h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'>
-        <button>
-          <span>Delete list</span>
-        </button>
-      </div>
-      <div className='hover:bg-[#f7f7f71a] w-full h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'>
-        <button>
-          <span>Duplicate</span>
-        </button>
-      </div>
-      <div className='hover:bg-[#f7f7f71a] w-full h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'>
-        <button>
-          <span>Show completed</span>
-        </button>
-      </div>
-      <div className='hover:bg-[#f7f7f71a] w-full h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'>
-        <button>
-          <span>Clear all</span>
-        </button>
-      </div>
-    </div>
-  );
-}
-
-export function CustomListModal() {
+export function CustomListModal({ icon, color, setIcon, setColor }: ListProps) {
   return (
     <div className='flex flex-col gap-4 py-4 px-3 rounded-[32px] w-[275px] backdrop-blur-3xl bg-[#282828] shadow-modal z-[90]'>
       <div className='flex flex-col items-start gap-1 pt-0 px-2 pb-2'>
@@ -63,8 +40,12 @@ export function CustomListModal() {
           Icon
         </span>
         <div className='flex items-center gap-2 flex-wrap w-full justify-between'>
-          {CustomIcons.map((iconName) => (
-            <div key={iconName} className='opacity-50 hover:opacity-100'>
+          {CustomIcons.map((iconName: string) => (
+            <button
+              key={iconName}
+              className={`${icon === iconName ? 'opacity-100 ' : 'opacity-50 hover:opacity-100'}`}
+              onClick={(): void => setIcon(iconName)}
+            >
               <Icon
                 color={'#F7F7F7'}
                 size={24}
@@ -73,7 +54,7 @@ export function CustomListModal() {
                 iconName={iconName}
                 strokeWidth={2}
               />
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -84,15 +65,14 @@ export function CustomListModal() {
         <div className='flex items-center gap-2 flex-wrap w-full justify-between'>
           <ColorPicker
             className='w-full justify-between flex'
-            defaultValue={'white'}
             values={[
-              'white',
-              'red',
-              'orange',
-              'yellow',
-              'green',
-              'cyan',
-              'blue',
+              '#CBCBCB',
+              '#FF7474',
+              '#FFA502',
+              '#FFFA65',
+              '#2ECC71',
+              '#DEB4F6',
+              '#B4AAFF',
             ]}
             bgPicker={[
               '#CBCBCB',
@@ -103,8 +83,27 @@ export function CustomListModal() {
               '#DEB4F6',
               '#B4AAFF',
             ]}
+            defaultValue={color}
+            onValueChange={(value) => setColor(value)}
           />
         </div>
+      </div>
+    </div>
+  );
+}
+
+export function EditListModal() {
+  return (
+    <div className='flex flex-col py-4 px-3 rounded-[32px] w-[212px] backdrop-blur bg-[#F7F7F7]/5 shadow-modal z-[90]'>
+      <div className='hover:bg-[#f7f7f71a] w-full h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'>
+        <button>
+          <span>Show completed</span>
+        </button>
+      </div>
+      <div className='hover:bg-[#f7f7f71a] w-full h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'>
+        <button>
+          <span>Clear all</span>
+        </button>
       </div>
     </div>
   );

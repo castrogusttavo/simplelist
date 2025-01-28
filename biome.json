@@ -35,7 +35,7 @@
 			},
 			"suspicious": {
 				"noDebugger": "off",
-				"noConsoleLog": "info",
+				"noConsoleLog": "off",
 				"noAssignInExpressions": "off"
 			},
 			"style": {

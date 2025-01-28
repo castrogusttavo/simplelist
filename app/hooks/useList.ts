@@ -1,4 +1,3 @@
-import type { Task } from '@/app/lib/taskService';
 import {
   type UseMutationResult,
   type UseQueryResult,
@@ -37,8 +36,14 @@ export function useCreateList(): UseMutationResult<
   return useMutation({
     mutationFn: (newList: Omit<List, 'id'>): Promise<List> =>
       createList(newList),
-    onSuccess: async (): Promise<void> =>
-      await queryClient.invalidateQueries({ queryKey: ['lists'] }),
+    onSuccess: async (data): Promise<void> => {
+      queryClient.setQueryData<List[]>(['lists'], (oldLists = []) => [
+        ...oldLists,
+        data,
+      ]);
+
+      await queryClient.invalidateQueries({ queryKey: ['lists'] });
+    },
   });
 }
 
@@ -64,6 +69,7 @@ export const useUpdateList = (): UseMutationResult<
     ): Promise<void> => {
       await queryClient.invalidateQueries({ queryKey: ['list', id] });
       await queryClient.invalidateQueries({ queryKey: ['lists'] });
+      await queryClient.refetchQueries({ queryKey: ['list', id] });
     },
   });
 };

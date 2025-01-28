@@ -45,15 +45,16 @@ export async function updateList(
   id: string,
   updates: Partial<Omit<List, 'id'>>,
 ): Promise<List | null> {
-  const list = getListById(id);
-  if (!list) throw new Error('List not found');
+  const listIndex = listCache.findIndex((l) => l.id === id);
+  if (listIndex === -1) throw new Error('List not found');
 
-  const updateList = { ...list, ...updates };
+  const updatedList = { ...listCache[listIndex], ...updates };
 
-  partialListSchema.parse(updateList);
-  Object.assign(list, updateList);
+  partialListSchema.parse(updatedList);
 
-  return list;
+  listCache[listIndex] = updatedList;
+
+  return updatedList;
 }
 
 export async function deleteList(id: string): Promise<void> {

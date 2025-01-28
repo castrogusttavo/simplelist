@@ -10,7 +10,9 @@ import {
   TooltipRoot,
   TooltipTrigger,
 } from '@/app/components/tooltip';
+import { useCreateList } from '@/app/hooks/useList';
 import { Add01Icon } from '@houstonicons/pro';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
 interface SearchBarProps {
@@ -20,6 +22,12 @@ interface SearchBarProps {
 
 export function ListsActions({ findValue, onChangeValue }: SearchBarProps) {
   const [createList, setCreateList] = useState(false);
+  const [listName, setListName] = useState('');
+  const [icon, setIcon] = useState('smile');
+  const [color, setColor] = useState('#CBCBCB');
+
+  const createListMutation = useCreateList();
+  const queryClient = useQueryClient();
 
   function handleCreateTask() {
     setCreateList(!createList);
@@ -35,6 +43,26 @@ export function ListsActions({ findValue, onChangeValue }: SearchBarProps) {
     window.addEventListener('keydown', handleKeyDown);
     return (): void => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  function handleCreateList(listName: string, icon: string, color: string) {
+    if (!listName.trim()) return;
+
+    createListMutation.mutate(
+      {
+        name: listName,
+        iconName: icon,
+        iconColor: color,
+        totalTasks: 0,
+      },
+      {
+        onSuccess: async () => {
+          await queryClient.invalidateQueries({ queryKey: ['lists'] });
+        },
+      },
+    );
+    setCreateList(false);
+    setListName('');
+  }
 
   return (
     <div className='flex justify-between gap-2 w-full mb-5'>
@@ -73,7 +101,15 @@ export function ListsActions({ findValue, onChangeValue }: SearchBarProps) {
       </div>
       {createList && (
         <div className='fixed inset-0 z-30 w-full h-full flex items-end justify-center bg-[#282828B2] backdrop-blur-2xl p-3'>
-          <CreateNewListInput />
+          <CreateNewListInput
+            onCreateList={handleCreateList}
+            listName={listName}
+            setListName={setListName}
+            icon={icon}
+            setIcon={setIcon}
+            color={color}
+            setColor={setColor}
+          />
         </div>
       )}
     </div>

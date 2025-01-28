@@ -6,6 +6,7 @@ interface RadioProps {
   label?: string;
   defaultValue?: string;
   bgPicker: string[];
+  onValueChange?: (value: string) => void;
 }
 
 export function ColorPicker({
@@ -14,12 +15,14 @@ export function ColorPicker({
   label,
   defaultValue,
   bgPicker,
+  onValueChange,
 }: RadioProps) {
   return (
     <RadioGroup.Root
       className={className}
       aria-label={label}
       defaultValue={defaultValue}
+      onValueChange={onValueChange}
     >
       {values.map((value, index) => {
         const bgColor = bgPicker[index] && bgPicker ? bgPicker[index] : '#FFF';

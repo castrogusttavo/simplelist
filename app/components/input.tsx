@@ -1,27 +1,50 @@
-'use client';
-
 import { IconSettings } from '@/app/components/button';
 import { ButtonDone } from '@/app/components/button';
 import { CustomListModal } from '@/app/components/modal';
-import { CircleIcon, SmileIcon } from '@houstonicons/pro';
+import { CircleIcon, Icon } from '@houstonicons/pro';
 import { type ChangeEvent, useState } from 'react';
 
-export function CreateNewListInput() {
-  const [listName, setListName] = useState('');
+interface CreateNewListInputProps {
+  listName: string;
+  setListName: (value: string) => void;
+  icon: string;
+  setIcon: (value: string) => void;
+  color: string;
+  setColor: (value: string) => void;
+  onCreateList: (listName: string, icon: string, color: string) => void;
+}
+
+export function CreateNewListInput({
+  listName,
+  setListName,
+  icon,
+  setIcon,
+  color,
+  setColor,
+  onCreateList,
+}: CreateNewListInputProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className='w-full'>
-      {isModalOpen && <CustomListModal />}
+      {isModalOpen && (
+        <CustomListModal
+          icon={icon}
+          color={color}
+          setColor={setColor}
+          setIcon={setIcon}
+        />
+      )}
       <div className='p-3 flex items-center rounded-[20px] bg-[#282828] z-40 w-full overlay relative'>
         <div className='w-full flex items-center gap-4'>
-          <IconSettings onClick={() => setIsModalOpen(!isModalOpen)}>
-            <SmileIcon
-              color='#F7F7F7'
+          <IconSettings onClick={(): void => setIsModalOpen(!isModalOpen)}>
+            <Icon
+              color={color}
               size={24}
-              type={'rounded'}
               variant={'stroke'}
-              strokeWidth={1.5}
+              type={'rounded'}
+              iconName={icon}
+              strokeWidth={2}
             />
           </IconSettings>
           <input
@@ -34,7 +57,11 @@ export function CreateNewListInput() {
             className='placeholder-[#F7F7F7]/25 placeholder:font-semibold bg-transparent focus:placeholder-[#F7F7F7]/70 flex-1 w-full outline-none border-none text-[#F7F7F7]'
           />
         </div>
-        {listName && <ButtonDone onClick={() => setListName('')} />}
+        {listName && (
+          <ButtonDone
+            onClick={(): void => onCreateList(listName, icon, color)}
+          />
+        )}
       </div>
     </div>
   );
