@@ -9,27 +9,27 @@ const taskSchema = z.object({
 
 const partialTaskSchema = taskSchema.partial();
 
-interface Task extends z.infer<typeof taskSchema> {}
+export interface Task extends z.infer<typeof taskSchema> {}
 
 const taskCache: Task[] = [];
 
-export function getTasks(): Task[] {
+export async function getTasks(): Promise<Task[]> {
   return taskCache;
 }
 
-export function getTaskById(id: string): Task | null {
+export async function getTaskById(id: string): Promise<Task | null> {
   return taskCache.find((task: Task): boolean => task.id === id) || null;
 }
 
-export function getTasksForList(listId: string): Task[] {
+export async function getTasksForList(listId: string): Promise<Task[]> {
   return taskCache.filter((task: Task): boolean => task.listId === listId);
 }
 
-export function createTask({
+export async function createTask({
   listId,
   name,
   isCompleted,
-}: Omit<Task, 'id'>): Task {
+}: Omit<Task, 'id'>): Promise<Task> {
   const newTask: Task = {
     listId,
     name,
@@ -42,10 +42,10 @@ export function createTask({
   return newTask;
 }
 
-export function updateTask(
+export async function updateTask(
   id: string,
   updates: Partial<Omit<Task, 'id'>>,
-): Task {
+): Promise<Task | null> {
   const task = getTaskById(id);
   if (!task) throw new Error('Task not found');
 
@@ -57,7 +57,7 @@ export function updateTask(
   return task;
 }
 
-export function deleteTask(id: string): void {
+export async function deleteTask(id: string): Promise<void> {
   const index = taskCache.findIndex((task: Task): boolean => task.id === id);
   if (index === -1) throw new Error('Task not found');
 

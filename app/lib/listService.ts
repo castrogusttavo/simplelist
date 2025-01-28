@@ -10,24 +10,24 @@ const listSchema = z.object({
 
 const partialListSchema = listSchema.omit({ id: true }).partial();
 
-interface List extends z.infer<typeof listSchema> {}
+export interface List extends z.infer<typeof listSchema> {}
 
 const listCache: List[] = [];
 
-export function getLists(): List[] {
+export async function getLists(): Promise<List[]> {
   return listCache;
 }
 
-export function getListById(id: string): List | null {
+export async function getListById(id: string): Promise<List | null> {
   return listCache.find((list: List): boolean => list.id === id) || null;
 }
 
-export function createList({
+export async function createList({
   name,
   iconName,
   iconColor,
   totalTasks,
-}: Omit<List, 'id'>): List {
+}: Omit<List, 'id'>): Promise<List> {
   const newList: List = {
     name,
     iconName,
@@ -41,10 +41,10 @@ export function createList({
   return newList;
 }
 
-export function updateList(
+export async function updateList(
   id: string,
   updates: Partial<Omit<List, 'id'>>,
-): List {
+): Promise<List | null> {
   const list = getListById(id);
   if (!list) throw new Error('List not found');
 
@@ -56,7 +56,7 @@ export function updateList(
   return list;
 }
 
-export function deleteList(id: string): void {
+export async function deleteList(id: string): Promise<void> {
   const index = listCache.findIndex((list: List): boolean => list.id === id);
   if (index === -1) throw new Error('List not found');
 
