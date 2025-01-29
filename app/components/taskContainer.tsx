@@ -1,5 +1,5 @@
 import { TaskCheckBox } from '@/app/components/checkbox';
-import { DragAndDrop } from '@/app/components/dragAndDrop';
+import { DragAndDropTask } from '@/app/components/dragAndDrop';
 import { useCheckboxState } from '@/app/hooks/useCheckboxState';
 import { useState } from 'react';
 
@@ -26,7 +26,7 @@ export function TaskContainer({ id, name }: TaskProps) {
           {name}
         </p>
       </div>
-      <DragAndDrop
+      <DragAndDropTask
         showSettings={showSettings}
         setShowSettings={setShowSettings}
       />

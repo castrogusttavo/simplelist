@@ -17,7 +17,7 @@ import { useCreateList, useDeleteList } from '../hooks/useList';
 interface DragAndDropProps {
   showSettings: boolean;
   setShowSettings: (showSettings: boolean) => void;
-  listId: string;
+  listId?: string;
   className?: string;
 }
 
