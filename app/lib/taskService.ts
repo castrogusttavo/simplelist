@@ -1,3 +1,4 @@
+// app/services/taskService.ts
 import { z } from 'zod';
 
 const taskSchema = z.object({
@@ -11,18 +12,29 @@ const partialTaskSchema = taskSchema.partial();
 
 export interface Task extends z.infer<typeof taskSchema> {}
 
-const taskCache: Task[] = [];
+const TASKS_STORAGE_KEY = 'tasks';
+
+function loadTasksFromStorage(): Task[] {
+  const storedTasks = localStorage.getItem(TASKS_STORAGE_KEY);
+  return storedTasks ? JSON.parse(storedTasks) : [];
+}
+
+function saveTasksToStorage(tasks: Task[]): void {
+  localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
+}
 
 export async function getTasks(): Promise<Task[]> {
-  return taskCache;
+  return loadTasksFromStorage();
 }
 
 export async function getTaskById(id: string): Promise<Task | null> {
-  return taskCache.find((task: Task): boolean => task.id === id) || null;
+  const tasks = loadTasksFromStorage();
+  return tasks.find((task: Task): boolean => task.id === id) || null;
 }
 
 export async function getTasksForList(listId: string): Promise<Task[]> {
-  return taskCache.filter((task: Task): boolean => task.listId === listId);
+  const tasks = loadTasksFromStorage();
+  return tasks.filter((task: Task): boolean => task.listId === listId);
 }
 
 export async function createTask({
@@ -30,6 +42,8 @@ export async function createTask({
   name,
   isCompleted,
 }: Omit<Task, 'id'>): Promise<Task> {
+  const tasks = loadTasksFromStorage();
+
   const newTask: Task = {
     listId,
     name,
@@ -38,7 +52,9 @@ export async function createTask({
   };
 
   taskSchema.parse(newTask);
-  taskCache.push(newTask);
+  tasks.push(newTask);
+  saveTasksToStorage(tasks);
+
   return newTask;
 }
 
@@ -46,20 +62,26 @@ export async function updateTask(
   id: string,
   updates: Partial<Omit<Task, 'id'>>,
 ): Promise<Task | null> {
-  const task = getTaskById(id);
-  if (!task) throw new Error('Task not found');
+  const tasks = loadTasksFromStorage();
+  const taskIndex = tasks.findIndex((task) => task.id === id);
 
-  const updatedTask = { ...task, ...updates };
+  if (taskIndex === -1) throw new Error('Task not found');
 
+  const updatedTask = { ...tasks[taskIndex], ...updates };
   partialTaskSchema.parse(updatedTask);
-  Object.assign(task, updatedTask);
 
-  return task;
+  tasks[taskIndex] = updatedTask;
+  saveTasksToStorage(tasks);
+
+  return updatedTask;
 }
 
 export async function deleteTask(id: string): Promise<void> {
-  const index = taskCache.findIndex((task: Task): boolean => task.id === id);
+  const tasks = loadTasksFromStorage();
+  const index = tasks.findIndex((task: Task): boolean => task.id === id);
+
   if (index === -1) throw new Error('Task not found');
 
-  taskCache.splice(index, 1);
+  tasks.splice(index, 1);
+  saveTasksToStorage(tasks);
 }

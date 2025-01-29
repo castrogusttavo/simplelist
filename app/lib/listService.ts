@@ -12,14 +12,24 @@ const partialListSchema = listSchema.omit({ id: true }).partial();
 
 export interface List extends z.infer<typeof listSchema> {}
 
-const listCache: List[] = [];
+const LOCAL_STORAGE_KEY = 'lists';
+
+function getListsFromStorage(): List[] {
+  const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+  return data ? JSON.parse(data) : [];
+}
+
+function saveListsToStorage(lists: List[]): void {
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lists));
+}
 
 export async function getLists(): Promise<List[]> {
-  return listCache;
+  return getListsFromStorage();
 }
 
 export async function getListById(id: string): Promise<List | null> {
-  return listCache.find((list: List): boolean => list.id === id) || null;
+  const lists = getListsFromStorage();
+  return lists.find((list: List): boolean => list.id === id) || null;
 }
 
 export async function createList({
@@ -37,7 +47,11 @@ export async function createList({
   };
 
   listSchema.parse(newList);
-  listCache.push(newList);
+
+  const lists = getListsFromStorage();
+  lists.push(newList);
+  saveListsToStorage(lists);
+
   return newList;
 }
 
@@ -45,21 +59,27 @@ export async function updateList(
   id: string,
   updates: Partial<Omit<List, 'id'>>,
 ): Promise<List | null> {
-  const listIndex = listCache.findIndex((l) => l.id === id);
+  const lists = getListsFromStorage();
+  const listIndex = lists.findIndex((l) => l.id === id);
+
   if (listIndex === -1) throw new Error('List not found');
 
-  const updatedList = { ...listCache[listIndex], ...updates };
+  const updatedList = { ...lists[listIndex], ...updates };
 
   partialListSchema.parse(updatedList);
 
-  listCache[listIndex] = updatedList;
+  lists[listIndex] = updatedList;
+  saveListsToStorage(lists);
 
   return updatedList;
 }
 
 export async function deleteList(id: string): Promise<void> {
-  const index = listCache.findIndex((list: List): boolean => list.id === id);
+  const lists = getListsFromStorage();
+  const index = lists.findIndex((list: List): boolean => list.id === id);
+
   if (index === -1) throw new Error('List not found');
 
-  listCache.splice(index, 1);
+  lists.splice(index, 1);
+  saveListsToStorage(lists);
 }
