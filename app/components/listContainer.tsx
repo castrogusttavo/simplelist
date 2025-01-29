@@ -1,5 +1,5 @@
 import { IconSettings } from '@/app/components/button';
-import { DragAndDropList } from '@/app/components/dragAndDrop';
+import { DragAndDrop } from '@/app/components/listSettings';
 import { CustomListModal } from '@/app/components/modal';
 import { Icon } from '@houstonicons/pro';
 import { type ChangeEvent, useState } from 'react';
@@ -77,7 +77,7 @@ export function ListContainer({
         <div
           className={`${showSettings ? 'block' : 'hidden group-hover:block'}`}
         >
-          <DragAndDropList
+          <DragAndDrop
             listId={listId}
             showSettings={showSettings}
             setShowSettings={setShowSettings}
