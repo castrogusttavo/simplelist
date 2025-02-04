@@ -2,17 +2,21 @@
 
 import { ListsActions } from '@/app/components/ui/app/listActions';
 import { UserLists } from '@/app/components/ui/app/userLists';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useGetLists } from '@/app/hooks/useList';
 import { useState } from 'react';
 
 export default function Home() {
   const [searchTerm, SetSearchTerm] = useState('');
-  const queryClient = new QueryClient();
+
+  const { data: lists, isLoading, isError, error } = useGetLists();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error?.message}</div>;
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <ListsActions findValue={searchTerm} onChangeValue={SetSearchTerm} />
-      <UserLists searchTerm={searchTerm} />
-    </QueryClientProvider>
+      <UserLists searchTerm={searchTerm} lists={lists} />
+    </>
   );
 }

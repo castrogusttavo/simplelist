@@ -4,6 +4,7 @@ import './globals.css';
 import { ApplicationContainer } from '@/app/components/appContainer';
 import { Footer } from '@/app/components/ui/footer';
 import { Header } from '@/app/components/ui/header';
+import { QueryProvider } from '@/app/providers/queryProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -25,11 +26,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} antialiased bg-[#1E1E1E] text-zinc-50 w-full h-screen flex flex-col justify-between px-10 py-4`}
       >
-        <Header />
-        <ApplicationContainer className={'flex flex-col p-3 overflow-hidden'}>
-          {children}
-        </ApplicationContainer>
-        <Footer />
+        <QueryProvider>
+          <Header />
+          <ApplicationContainer className={'flex flex-col p-3 overflow-hidden'}>
+            {children}
+          </ApplicationContainer>
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );

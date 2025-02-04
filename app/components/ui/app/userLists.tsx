@@ -1,18 +1,14 @@
 'use client';
 
 import { ListContainer } from '@/app/components/listContainer';
-import { useGetLists } from '@/app/hooks/useList';
+import type { List } from '@/app/lib/listService';
 
 interface TaskListContainerProps {
   searchTerm: string;
+  lists: List[] | undefined;
 }
 
-export function UserLists({ searchTerm }: TaskListContainerProps) {
-  const { data: lists, isLoading, isError, error } = useGetLists();
-
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error?.message}</div>;
-
+export function UserLists({ searchTerm, lists }: TaskListContainerProps) {
   const filteredLists = lists?.filter((list) =>
     list.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
@@ -34,7 +30,7 @@ export function UserLists({ searchTerm }: TaskListContainerProps) {
 }
 
 //    <ErrorBoundary FallbackComponent={ErrorFallback}>
-//       <Suspense fallback={<p>Loading lists...</p>}>
+//       <Suspense fallback={<p>Teste2 lists...</p>}>
 //         <ListsContent />
 //       </Suspense>
 //     </ErrorBoundary>
