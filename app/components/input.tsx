@@ -14,6 +14,12 @@ interface CreateNewListInputProps {
   onCreateList: (listName: string, icon: string, color: string) => void;
 }
 
+interface CreateNewTaskInputProps {
+  taskName: string;
+  setTaskName: (value: string) => void;
+  onCreateTask: (taskName: string) => void;
+}
+
 export function CreateNewListInput({
   listName,
   setListName,
@@ -67,9 +73,11 @@ export function CreateNewListInput({
   );
 }
 
-export function CreateNewTaskInput() {
-  const [taskName, setTaskName] = useState('');
-
+export function CreateNewTaskInput({
+  taskName,
+  setTaskName,
+  onCreateTask,
+}: CreateNewTaskInputProps) {
   return (
     <div className='p-3 flex items-center rounded-[20px] bg-[#282828] z-40 w-full overlay relative'>
       <div className='w-full flex items-center gap-4'>
@@ -86,13 +94,13 @@ export function CreateNewTaskInput() {
           type='text'
           placeholder='Task name...'
           value={taskName}
-          onChange={(e: ChangeEvent<HTMLInputElement>): void =>
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTaskName(e.target.value)
           }
           className='placeholder-[#F7F7F7]/25 placeholder:font-semibold bg-transparent focus:placeholder-[#F7F7F7]/70 flex-1 w-full outline-none border-none text-[#F7F7F7]'
         />
       </div>
-      {taskName && <ButtonDone onClick={() => setTaskName('')} />}
+      {taskName && <ButtonDone onClick={() => onCreateTask(taskName)} />}
     </div>
   );
 }

@@ -1,24 +1,39 @@
 import { TaskCheckBox } from '@/app/components/checkbox';
 import { DragAndDrop } from '@/app/components/taskSettings';
-import { useCheckboxState } from '@/app/hooks/useCheckboxState';
+import { useUpdateTask } from '@/app/hooks/useTask';
 import { useState } from 'react';
-
+//
 interface TaskProps {
-  id: string;
+  taskId: string;
   name: string;
+  completed: boolean;
 }
 
-export function TaskContainer({ id, name }: TaskProps) {
-  const { isChecked, handleCheckedChange } = useCheckboxState(id);
+export function TaskContainer({ taskId, completed, name }: TaskProps) {
   const [showSettings, setShowSettings] = useState(false);
+  const [isChecked, setIsChecked] = useState(completed);
+  const { mutate: updateTask } = useUpdateTask();
+
+  function handleCheckedChange() {
+    const newCheckedState = !isChecked;
+    setIsChecked(newCheckedState);
+    updateTask({
+      id: taskId,
+      updates: { isCompleted: newCheckedState },
+    });
+  }
 
   return (
     <div
-      className={`flex justify-between items-center px-3 py-4 rounded-[20px] transition-all duration-500 group backdrop-blur-sm ${isChecked ? 'bg-[#F7F7F704] hover:bg-[#F7F7F7]/5' : 'bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10'}`}
+      className={`flex justify-between items-center px-3 py-4 rounded-[20px] transition-all duration-500 group backdrop-blur-sm ${
+        isChecked
+          ? 'bg-[#F7F7F704] hover:bg-[#F7F7F7]/5'
+          : 'bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10'
+      }`}
     >
       <div className='flex gap-3 items-center'>
         <TaskCheckBox
-          id={id}
+          id={taskId}
           isChecked={isChecked}
           handleCheckedChange={handleCheckedChange}
         />
@@ -27,6 +42,7 @@ export function TaskContainer({ id, name }: TaskProps) {
         </p>
       </div>
       <DragAndDrop
+        taskId={taskId}
         showSettings={showSettings}
         setShowSettings={setShowSettings}
       />

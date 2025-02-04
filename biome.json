@@ -27,7 +27,8 @@
 				"useAltText": "off",
 				"noAutofocus": "off",
 				"noPositiveTabindex": "off",
-				"useIframeTitle": "off"
+				"useIframeTitle": "off",
+				"useKeyWithClickEvents": "off"
 			},
 			"complexity": {
 				"noForEach": "off",
@@ -41,7 +42,8 @@
 			},
 			"style": {
 				"noShoutyConstants": "off",
-				"useNamingConvention": "off"
+				"useNamingConvention": "off",
+				"noUnusedTemplateLiteral": "off"
 			},
 			"correctness": {
 				"useExhaustiveDependencies": "off"

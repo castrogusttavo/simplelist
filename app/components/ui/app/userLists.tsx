@@ -2,6 +2,7 @@
 
 import { ListContainer } from '@/app/components/listContainer';
 import type { List } from '@/app/lib/listService';
+import { useState } from 'react';
 
 interface TaskListContainerProps {
   searchTerm: string;
@@ -9,6 +10,8 @@ interface TaskListContainerProps {
 }
 
 export function UserLists({ searchTerm, lists }: TaskListContainerProps) {
+  const [openModalId, setOpenModalId] = useState<string | null>(null);
+
   const filteredLists = lists?.filter((list) =>
     list.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
@@ -23,6 +26,8 @@ export function UserLists({ searchTerm, lists }: TaskListContainerProps) {
           iconColor={list.iconColor}
           iconName={list.iconName}
           totalTasks={list.totalTasks}
+          openModalId={openModalId}
+          setOpenModalId={setOpenModalId}
         />
       ))}
     </div>

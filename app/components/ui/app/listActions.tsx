@@ -29,14 +29,14 @@ export function ListsActions({ findValue, onChangeValue }: SearchBarProps) {
   const createListMutation = useCreateList();
   const queryClient = useQueryClient();
 
-  function handleCreateTask() {
+  function createNewList() {
     setCreateList(!createList);
   }
 
   useEffect((): (() => void) => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === '/') {
-        handleCreateTask();
+        createNewList();
       }
     }
 

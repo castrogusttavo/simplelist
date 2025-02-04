@@ -2,7 +2,8 @@ import { IconSettings } from '@/app/components/button';
 import { DragAndDrop } from '@/app/components/listSettings';
 import { CustomListModal } from '@/app/components/modal';
 import { Icon } from '@houstonicons/pro';
-import { type ChangeEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { type ChangeEvent, useRef, useState } from 'react';
 import { useUpdateList } from '../hooks/useList';
 
 interface ListProps {
@@ -13,21 +14,30 @@ interface ListProps {
   listId: string;
 }
 
+interface ListContainerProps extends ListProps {
+  openModalId: string | null;
+  setOpenModalId: (id: string | null) => void;
+}
+
 export function ListContainer({
   name,
   iconColor,
   iconName,
   totalTasks,
   listId,
-}: ListProps) {
+  openModalId,
+  setOpenModalId,
+}: ListContainerProps) {
   const [showSettings, setShowSettings] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const isModalOpen = openModalId === listId;
 
   const [currentIcon, setCurrentIcon] = useState(iconName);
   const [currentColor, setCurrentColor] = useState(iconColor);
   const [listName, setListName] = useState(name);
 
   const { mutate: updateList } = useUpdateList();
+  const router = useRouter();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleUpdate = (updates: Partial<Omit<ListProps, 'listId'>>) => {
     if (updates.iconName) setCurrentIcon(updates.iconName);
@@ -48,11 +58,33 @@ export function ListContainer({
     });
   };
 
+  const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (
+      inputRef.current === document.activeElement ||
+      isModalOpen ||
+      showSettings
+    ) {
+      e.preventDefault();
+      return;
+    }
+    router.push(`/list/${listId}`);
+  };
+
+  const handleSettingsClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setShowSettings(!showSettings);
+  };
+
+  const handleModalToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setOpenModalId(isModalOpen ? null : listId);
+  };
+
   return (
-    <div className='relative'>
+    <div className='relative' onClick={handleContainerClick}>
       <div className='flex justify-between items-center p-3 rounded-[20px] bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10 group transition-all duration-500'>
         <div className='flex gap-4 items-center'>
-          <IconSettings onClick={() => setIsModalOpen(!isModalOpen)}>
+          <IconSettings onClick={handleModalToggle}>
             <Icon
               color={iconColor}
               iconName={iconName}
@@ -63,6 +95,7 @@ export function ListContainer({
             />
           </IconSettings>
           <input
+            ref={inputRef}
             value={listName}
             onChange={handleNameChange}
             onBlur={handleNameBlur}
@@ -75,6 +108,7 @@ export function ListContainer({
           </span>
         )}
         <div
+          onClick={handleSettingsClick}
           className={`${showSettings ? 'block' : 'hidden group-hover:block'}`}
         >
           <DragAndDrop
@@ -85,7 +119,7 @@ export function ListContainer({
         </div>
       </div>
       {isModalOpen && (
-        <div className='fixed z-10'>
+        <div className='fixed z-10' onClick={(e) => e.stopPropagation()}>
           <CustomListModal
             icon={currentIcon}
             color={currentColor}

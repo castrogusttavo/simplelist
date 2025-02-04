@@ -1,4 +1,3 @@
-// app/services/taskService.ts
 import { z } from 'zod';
 
 const taskSchema = z.object({
@@ -84,4 +83,10 @@ export async function deleteTask(id: string): Promise<void> {
 
   tasks.splice(index, 1);
   saveTasksToStorage(tasks);
+}
+
+export async function deleteAllTasksForList(listId: string): Promise<void> {
+  const tasks = loadTasksFromStorage();
+  const updatedTasks = tasks.filter((task) => task.listId !== listId);
+  saveTasksToStorage(updatedTasks);
 }

@@ -6,6 +6,8 @@ import {
   TooltipRoot,
   TooltipTrigger,
 } from '@/app/components/tooltip';
+import { useCreateTask, useDeleteTask } from '@/app/hooks/useTask';
+import { getTaskById } from '@/app/lib/taskService';
 import {
   Copy01Icon,
   Delete02Icon,
@@ -13,16 +15,37 @@ import {
 } from '@houstonicons/pro';
 
 interface DragAndDropProps {
+  taskId: string;
   showSettings: boolean;
   setShowSettings: (showSettings: boolean) => void;
   className?: string;
 }
 
 export function DragAndDrop({
+  taskId,
   showSettings,
   setShowSettings,
   className,
 }: DragAndDropProps) {
+  const { mutate: deleteTask } = useDeleteTask();
+  const { mutate: createTask } = useCreateTask();
+
+  const handleDuplicate = async (): Promise<void> => {
+    const originalList = await getTaskById(taskId);
+    if (originalList) {
+      const newTask = {
+        listId: originalList.listId,
+        name: originalList.name,
+        isCompleted: originalList.isCompleted,
+      };
+      createTask(newTask);
+    }
+  };
+
+  const handleDelete = (): void => {
+    deleteTask(taskId);
+  };
+
   return (
     <div className={`flex gap-3 transition-all duration-500 ${className}`}>
       {showSettings && (
@@ -30,7 +53,10 @@ export function DragAndDrop({
           <TooltipProvider>
             <TooltipRoot>
               <TooltipTrigger>
-                <button className='opacity-0 transition-opacity duration-700 ease-in-out transition-discrete animate-fade-in'>
+                <button
+                  onClick={(): Promise<void> => handleDuplicate()}
+                  className='opacity-0 transition-opacity duration-700 ease-in-out transition-discrete animate-fade-in'
+                >
                   <Copy01Icon
                     color={'#A1A1A1'}
                     size={24}
@@ -52,7 +78,10 @@ export function DragAndDrop({
           <TooltipProvider>
             <TooltipRoot>
               <TooltipTrigger>
-                <button className='opacity-0 transition-opacity duration-700 ease-in-out transition-discrete animate-fade-in'>
+                <button
+                  onClick={(): void => handleDelete()}
+                  className='opacity-0 transition-opacity duration-700 ease-in-out transition-discrete animate-fade-in'
+                >
                   <Delete02Icon
                     color={'#A1A1A1'}
                     size={24}
