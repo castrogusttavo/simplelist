@@ -1,7 +1,7 @@
 import { Button } from '@/app/components/button';
 import { Code } from '@/app/components/code';
 import { CreateNewTaskInput } from '@/app/components/input';
-import { EditListModal } from '@/app/components/modal';
+import { EditTaskModal } from '@/app/components/modal';
 import { Progress } from '@/app/components/progress';
 import {
   TooltipArrow,
@@ -11,33 +11,44 @@ import {
   TooltipRoot,
   TooltipTrigger,
 } from '@/app/components/tooltip';
+import { useCreateTask } from '@/app/hooks/useTask';
+import type { Task } from '@/app/lib/taskService';
 import {
   Add01Icon,
   ArrowLeft02Icon,
   MoreHorizontalCircle01Icon,
 } from '@houstonicons/pro';
+import { useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 interface ListProps {
-  listName: string;
+  listName: string | undefined;
+  listId: string;
 }
 
 interface TasksProps {
-  totalTasks: number;
-  completedTasks: number;
+  tasks: Task[] | undefined;
+  onShowCompleted: () => void;
+  onClearAll: () => void;
 }
 
-export function TasksActionsHeader({ listName }: ListProps) {
+export function TasksActionsHeader({ listName, listId }: ListProps) {
   const [createTask, setCreateTask] = useState(false);
+  const [taskName, setTaskName] = useState('');
+  const router = useRouter();
 
-  function handleCreateTask() {
+  const createTaskMutation = useCreateTask();
+  const queryClient = useQueryClient();
+
+  function createNewTask() {
     setCreateTask(!createTask);
   }
 
   useEffect((): (() => void) => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === '/') {
-        handleCreateTask();
+        createNewTask();
       }
     }
 
@@ -45,10 +56,29 @@ export function TasksActionsHeader({ listName }: ListProps) {
     return (): void => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  function handleCreateTask(taskName: string, listId: string) {
+    if (!taskName.trim()) return;
+
+    createTaskMutation.mutate(
+      {
+        listId: listId,
+        name: taskName,
+        isCompleted: false,
+      },
+      {
+        onSuccess: async () => {
+          await queryClient.invalidateQueries({ queryKey: ['tasks'] });
+        },
+      },
+    );
+    setCreateTask(false);
+    setTaskName('');
+  }
+
   return (
     <div className='flex top-0 justify-between mb-3'>
       <div className='flex gap-3 items-center'>
-        <Button onClick={() => (window.location.href = '/')}>
+        <Button onClick={() => router.push('/')}>
           <ArrowLeft02Icon
             type={'rounded'}
             variant={'stroke'}
@@ -92,21 +122,41 @@ export function TasksActionsHeader({ listName }: ListProps) {
       </div>
       {createTask && (
         <div className='fixed inset-0 z-30 w-full h-full flex items-center justify-center bg-[#282828B2] backdrop-blur-md p-3'>
-          <CreateNewTaskInput />
+          <CreateNewTaskInput
+            onCreateTask={() => handleCreateTask(taskName, listId)}
+            taskName={taskName}
+            setTaskName={setTaskName}
+          />
         </div>
       )}
     </div>
   );
 }
 
-export function TasksActionsFooter({ totalTasks, completedTasks }: TasksProps) {
+export function TasksActionsFooter({
+  tasks,
+  onShowCompleted,
+  onClearAll,
+}: TasksProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const totalTasks = tasks?.length || 0;
+  const completedTasks = tasks?.filter((task) => task.isCompleted).length || 0;
 
   return (
     <div className='relative'>
       {isModalOpen && (
         <div className='fixed bottom-14 right-0 z-20 w-full h-full flex items-end justify-end bg-[#282828B2] backdrop-blur-xl p-3'>
-          <EditListModal />
+          <EditTaskModal
+            onShowCompleted={() => {
+              onShowCompleted();
+              setIsModalOpen(false);
+            }}
+            onClearAll={() => {
+              onClearAll();
+              setIsModalOpen(false);
+            }}
+          />
         </div>
       )}
       <div className='flex bottom-0 justify-between'>

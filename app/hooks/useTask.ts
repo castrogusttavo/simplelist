@@ -8,6 +8,7 @@ import {
 import {
   type Task,
   createTask,
+  deleteAllTasksForList,
   deleteTask,
   getTaskById,
   getTasks,
@@ -88,6 +89,23 @@ export const useDeleteTask = (): UseMutationResult<
 
   return useMutation({
     mutationFn: (id: string): Promise<void> => deleteTask(id),
+    onSuccess: async (): Promise<void> => {
+      await queryClient.invalidateQueries({ queryKey: ['tasks'] });
+    },
+  });
+};
+
+export const useDeleteAllTasks = (): UseMutationResult<
+  void,
+  Error,
+  string,
+  undefined
+> => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (listId: string): Promise<void> =>
+      deleteAllTasksForList(listId),
     onSuccess: async (): Promise<void> => {
       await queryClient.invalidateQueries({ queryKey: ['tasks'] });
     },

@@ -8,6 +8,11 @@ interface ListProps {
   setColor: (color: string) => void;
 }
 
+interface EditTaskModalProps {
+  onClearAll: () => void;
+  onShowCompleted: () => void;
+}
+
 const CustomIcons = [
   'smile',
   'home-04',
@@ -92,16 +97,20 @@ export function CustomListModal({ icon, color, setIcon, setColor }: ListProps) {
   );
 }
 
-export function EditListModal() {
+export function EditTaskModal({
+  onClearAll,
+  onShowCompleted,
+}: EditTaskModalProps) {
   return (
+    //
     <div className='flex flex-col py-4 px-3 rounded-[32px] w-[212px] backdrop-blur bg-[#F7F7F7]/5 shadow-modal z-[90]'>
       <div className='hover:bg-[#f7f7f71a] w-full h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'>
-        <button>
+        <button onClick={onShowCompleted}>
           <span>Show completed</span>
         </button>
       </div>
       <div className='hover:bg-[#f7f7f71a] w-full h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'>
-        <button>
+        <button onClick={onClearAll}>
           <span>Clear all</span>
         </button>
       </div>
