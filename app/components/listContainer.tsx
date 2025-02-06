@@ -90,7 +90,7 @@ export function ListContainer({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className='relative'
+          className='relative cursor-pointer'
           onClick={handleContainerClick}
         >
           <div className='flex justify-between items-center p-3 rounded-[20px] bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10 group transition-all duration-500'>
@@ -110,7 +110,8 @@ export function ListContainer({
                 value={listName}
                 onChange={handleNameChange}
                 onBlur={handleNameBlur}
-                className='text-[#F7F7F7]/70 text-sm font-semibold bg-transparent border-none outline-none'
+                size={listName.length}
+                className='text-[#F7F7F7]/70 text-sm font-semibold bg-transparent border-none outline-none cursor-pointer'
               />
             </div>
             {!showSettings && (

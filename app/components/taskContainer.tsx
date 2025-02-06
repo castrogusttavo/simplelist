@@ -15,6 +15,7 @@ export function TaskContainer({ taskId, completed, name, index }: TaskProps) {
   const [showSettings, setShowSettings] = useState(false);
   const [isChecked, setIsChecked] = useState(completed);
   const { mutate: updateTask } = useUpdateTask();
+  const [taskName, setTaskName] = useState(name);
 
   function handleCheckedChange() {
     const newCheckedState = !isChecked;
@@ -25,11 +26,22 @@ export function TaskContainer({ taskId, completed, name, index }: TaskProps) {
     });
   }
 
+  function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setTaskName(e.target.value);
+  }
+
+  const handleNameBlur = () => {
+    updateTask({
+      id: taskId,
+      updates: { name: taskName },
+    });
+  };
+
   return (
     <Draggable draggableId={taskId} index={index}>
       {(provided) => (
         <div
-          className={`flex justify-between items-center px-3 py-4 rounded-[20px] transition-all duration-500 group backdrop-blur-sm ${
+          className={`flex justify-between items-center px-3 py-4 rounded-[20px] transition-all duration-500 group backdrop-blur-sm cursor-pointer ${
             isChecked
               ? 'bg-[#F7F7F704] hover:bg-[#F7F7F7]/5'
               : 'bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10'
@@ -44,9 +56,12 @@ export function TaskContainer({ taskId, completed, name, index }: TaskProps) {
               isChecked={isChecked}
               handleCheckedChange={handleCheckedChange}
             />
-            <p className='text-[#F7F7F7]/50 group-hover:text-[#F7F7F7]/70 has-checked:hover:text-[#F7F7F7]/50 transition-all text-sm font-semibold'>
-              {name}
-            </p>
+            <input
+              value={taskName}
+              onChange={handleNameChange}
+              onBlur={handleNameBlur}
+              className='text-[#F7F7F7]/50 group-hover:text-[#F7F7F7]/70 text-sm font-semibold bg-transparent border-none outline-none cursor-pointer'
+            />
           </div>
           <DragAndDrop
             taskId={taskId}

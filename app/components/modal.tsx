@@ -43,12 +43,12 @@ const CustomIcons = [
 
 export function CustomListModal({ icon, color, setIcon, setColor }: ListProps) {
   return (
-    <div className='flex flex-col gap-4 py-4 px-3 rounded-[32px] w-[275px] backdrop-blur-3xl bg-[#282828] shadow-modal z-[90]'>
+    <div className='flex flex-col gap-4 py-4 px-3 rounded-[32px] w-[332px] backdrop-blur-3xl bg-[#282828] shadow-modal z-[90]'>
       <div className='flex flex-col items-start gap-1 pt-0 px-2 pb-2'>
         <span className='text-xs font-bold self-stretch text-[#F7F7F7]/25'>
           Icon
         </span>
-        <div className='flex items-center gap-2 flex-wrap w-full justify-between'>
+        <div className='flex items-center gap-4 flex-wrap w-full justify-between mt-2'>
           {CustomIcons.map((iconName: string) => (
             <button
               key={iconName}
@@ -71,7 +71,7 @@ export function CustomListModal({ icon, color, setIcon, setColor }: ListProps) {
         <span className='text-xs font-bold self-stretch text-[#F7F7F7]/25'>
           Color
         </span>
-        <div className='flex items-center gap-2 flex-wrap w-full justify-between'>
+        <div className='flex items-center gap-2 flex-wrap w-full justify-between mt-2'>
           <ColorPicker
             className='w-full justify-between flex'
             values={[
