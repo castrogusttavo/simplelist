@@ -152,7 +152,7 @@ export function TasksActionsFooter({
   const completedTasks = tasks?.filter((task) => task.isCompleted).length || 0;
 
   return (
-    <div className='relative'>
+    <div className='relative mt-3 mt:mb-0'>
       {isModalOpen && (
         <div className='fixed bottom-14 right-0 z-20 w-full h-full flex items-end justify-end bg-[#282828B2] backdrop-blur-xl p-3'>
           <EditTaskModal

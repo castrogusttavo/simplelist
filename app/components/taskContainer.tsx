@@ -63,11 +63,13 @@ export function TaskContainer({ taskId, completed, name, index }: TaskProps) {
               className='text-[#F7F7F7]/50 group-hover:text-[#F7F7F7]/70 text-sm font-semibold bg-transparent border-none outline-none cursor-pointer'
             />
           </div>
-          <DragAndDrop
-            taskId={taskId}
-            showSettings={showSettings}
-            setShowSettings={setShowSettings}
-          />
+          <div className='hidden md:block'>
+            <DragAndDrop
+              taskId={taskId}
+              showSettings={showSettings}
+              setShowSettings={setShowSettings}
+            />
+          </div>
         </div>
       )}
     </Draggable>

@@ -70,16 +70,30 @@ export function ListContainer({
       e.preventDefault();
       return;
     }
+    if (window.innerWidth < 768) {
+      router.push(`/list/${listId}`);
+      return;
+    }
     router.push(`/list/${listId}`);
   };
 
   const handleSettingsClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
+
+    if (window.innerWidth < 768) {
+      return;
+    }
+
     setShowSettings(!showSettings);
   };
 
   const handleModalToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+
+    if (window.innerWidth < 768) {
+      return;
+    }
+
     setOpenModalId(isModalOpen ? null : listId);
   };
 
@@ -111,17 +125,18 @@ export function ListContainer({
                 onChange={handleNameChange}
                 onBlur={handleNameBlur}
                 size={listName.length}
+                readOnly={window.innerWidth < 768}
                 className='text-[#F7F7F7]/70 text-sm font-semibold bg-transparent border-none outline-none cursor-pointer'
               />
             </div>
             {!showSettings && (
-              <span className='text-[#F7F7F7]/70 text-sm font-medium group-hover:hidden h-6 w-6 text-center'>
+              <span className='text-[#F7F7F7]/70 text-sm font-medium md:group-hover:hidden h-6 w-6 text-center'>
                 {totalTasks}
               </span>
             )}
             <div
               onClick={handleSettingsClick}
-              className={`${showSettings ? 'block' : 'hidden group-hover:block'}`}
+              className={`${showSettings ? 'block' : 'hidden md:group-hover:block'}`}
             >
               <DragAndDrop
                 listId={listId}
