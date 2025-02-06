@@ -5,7 +5,7 @@ import { Download04Icon } from '@houstonicons/pro';
 
 export function Footer() {
   return (
-    <footer className='w-full flex justify-between items-center'>
+    <footer className='hidden w-full md:flex justify-between items-center'>
       <div className='flex gap-2'>
         <button className='min-w-11 min-h-11 flex p-2.5 justify-center items-center rounded-full transition-all' />
         <button className='min-w-11 min-h-11 flex p-2.5 justify-center items-center rounded-full transition-all' />

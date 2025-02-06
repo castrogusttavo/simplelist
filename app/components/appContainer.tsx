@@ -19,7 +19,7 @@ export function OverlayBlur() {
 
 export function Overlay() {
   return (
-    <div className='relative w-[512px] h-[528px]'>
+    <div className='hidden md:block md:relative w-[512px] h-[528px]'>
       <OverlayBlur />
       <OverlayShadow />
     </div>
@@ -29,7 +29,7 @@ export function Overlay() {
 export function Container({ children, className }: ContainerProps) {
   return (
     <div
-      className={`relative inset-0 w-[480px] h-[496px] rounded-[32px] border border-[#FFFFFF0C]/20 shrink-0 backdrop-blur-xl bg-[#282828B2] ${className}`}
+      className={`hidden md:block md:relative inset-0 w-[480px] h-[496px] rounded-[32px] border border-[#FFFFFF0C]/20 shrink-0 backdrop-blur-xl bg-[#282828B2] ${className}`}
     >
       {children}
     </div>
@@ -38,11 +38,14 @@ export function Container({ children, className }: ContainerProps) {
 
 export function ApplicationContainer({ children, className }: ContainerProps) {
   return (
-    <div className='relative w-full h-auto flex justify-center items-center'>
+    <div className='relative w-full h-auto md:flex justify-center items-center'>
       <div className='relative'>
         <Overlay />
-        <div className='absolute inset-0 flex justify-center items-center'>
+        <div className='absolute inset-0 flex justify-center items-center min-h-min md:min-h-0'>
           <Container className={className}>{children}</Container>
+          <div className='block md:hidden w-full bg-[#282828B2] p-2.5 min-h-screen'>
+            {children}
+          </div>
         </div>
       </div>
     </div>

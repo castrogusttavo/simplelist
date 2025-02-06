@@ -1,13 +1,6 @@
-'use client';
-
 import { ButtonClear } from '@/app/components/button';
 import { Search01Icon } from '@houstonicons/pro';
-import {
-  type ChangeEvent,
-  type ComponentProps,
-  useEffect,
-  useState,
-} from 'react';
+import { type ChangeEvent, type ComponentProps, useEffect } from 'react';
 
 interface SearchBarProps extends ComponentProps<'input'> {
   findValue: string;

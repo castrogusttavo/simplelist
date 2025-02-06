@@ -5,7 +5,7 @@ import { Logout03Icon } from '@houstonicons/pro';
 
 export function Header() {
   return (
-    <header className='w-full flex justify-between items-center'>
+    <header className='hidden w-full md:flex justify-between items-center'>
       <a href={'/'}>
         <img src='/logo.svg' alt={'Simple List logo'} />
       </a>

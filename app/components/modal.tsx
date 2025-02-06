@@ -1,5 +1,3 @@
-'use client';
-
 import { ColorPicker } from '@/app/components/radioButton';
 import { SwitchTask } from '@/app/components/switch';
 import { Icon } from '@houstonicons/pro';
