@@ -1,7 +1,7 @@
 'use client';
 
 import { ListContainer } from '@/app/components/listContainer';
-import type { List } from '@/app/lib/listService';
+import type { List } from '@/app/services/listService';
 import { useState } from 'react';
 
 interface TaskListContainerProps {
@@ -33,9 +33,3 @@ export function UserLists({ searchTerm, lists }: TaskListContainerProps) {
     </div>
   );
 }
-
-//    <ErrorBoundary FallbackComponent={ErrorFallback}>
-//       <Suspense fallback={<p>Teste2 lists...</p>}>
-//         <ListsContent />
-//       </Suspense>
-//     </ErrorBoundary>

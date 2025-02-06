@@ -12,12 +12,14 @@ interface CreateNewListInputProps {
   color: string;
   setColor: (value: string) => void;
   onCreateList: (listName: string, icon: string, color: string) => void;
+  autoFocus?: boolean;
 }
 
 interface CreateNewTaskInputProps {
   taskName: string;
   setTaskName: (value: string) => void;
   onCreateTask: (taskName: string) => void;
+  autoFocus?: boolean;
 }
 
 export function CreateNewListInput({
@@ -28,6 +30,7 @@ export function CreateNewListInput({
   color,
   setColor,
   onCreateList,
+  autoFocus,
 }: CreateNewListInputProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -60,6 +63,12 @@ export function CreateNewListInput({
             onChange={(e: ChangeEvent<HTMLInputElement>): void =>
               setListName(e.target.value)
             }
+            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => {
+              if (e.key === 'Enter') {
+                onCreateList(listName, icon, color);
+              }
+            }}
+            autoFocus={autoFocus}
             className='placeholder-[#F7F7F7]/25 placeholder:font-semibold bg-transparent focus:placeholder-[#F7F7F7]/70 flex-1 w-full outline-none border-none text-[#F7F7F7]'
           />
         </div>
@@ -77,6 +86,7 @@ export function CreateNewTaskInput({
   taskName,
   setTaskName,
   onCreateTask,
+  autoFocus,
 }: CreateNewTaskInputProps) {
   return (
     <div className='p-3 flex items-center rounded-[20px] bg-[#282828] z-40 w-full overlay relative'>
@@ -97,6 +107,12 @@ export function CreateNewTaskInput({
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTaskName(e.target.value)
           }
+          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => {
+            if (e.key === 'Enter') {
+              onCreateTask(taskName);
+            }
+          }}
+          autoFocus={autoFocus}
           className='placeholder-[#F7F7F7]/25 placeholder:font-semibold bg-transparent focus:placeholder-[#F7F7F7]/70 flex-1 w-full outline-none border-none text-[#F7F7F7]'
         />
       </div>

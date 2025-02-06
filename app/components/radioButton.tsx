@@ -40,6 +40,3 @@ export function ColorPicker({
     </RadioGroup.Root>
   );
 }
-
-// 24 -> 44
-// 11 -> 20

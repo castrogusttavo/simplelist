@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from '@/app/components/tooltip';
 import { useCreateTask } from '@/app/hooks/useTask';
-import type { Task } from '@/app/lib/taskService';
+import type { Task } from '@/app/services/taskService';
 import {
   Add01Icon,
   ArrowLeft02Icon,
@@ -36,18 +36,25 @@ interface TasksProps {
 export function TasksActionsHeader({ listName, listId }: ListProps) {
   const [createTask, setCreateTask] = useState(false);
   const [taskName, setTaskName] = useState('');
+  const [isFocus, setIsFocus] = useState(false);
   const router = useRouter();
 
   const createTaskMutation = useCreateTask();
   const queryClient = useQueryClient();
 
   function createNewTask() {
-    setCreateTask(!createTask);
+    setCreateTask((prev) => !prev);
+    setIsFocus((prev) => !prev);
+    if (taskName === '/') {
+      setTaskName('');
+    }
   }
 
   useEffect((): (() => void) => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === '/') {
+        event.preventDefault();
+        setTaskName('');
         createNewTask();
       }
     }
@@ -126,6 +133,7 @@ export function TasksActionsHeader({ listName, listId }: ListProps) {
             onCreateTask={() => handleCreateTask(taskName, listId)}
             taskName={taskName}
             setTaskName={setTaskName}
+            autoFocus={isFocus}
           />
         </div>
       )}
@@ -150,11 +158,9 @@ export function TasksActionsFooter({
           <EditTaskModal
             onShowCompleted={() => {
               onShowCompleted();
-              setIsModalOpen(false);
             }}
             onClearAll={() => {
               onClearAll();
-              setIsModalOpen(false);
             }}
           />
         </div>

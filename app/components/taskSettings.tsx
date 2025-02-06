@@ -7,7 +7,7 @@ import {
   TooltipTrigger,
 } from '@/app/components/tooltip';
 import { useCreateTask, useDeleteTask } from '@/app/hooks/useTask';
-import { getTaskById } from '@/app/lib/taskService';
+import { getTaskById } from '@/app/services/taskService';
 import {
   Copy01Icon,
   Delete02Icon,

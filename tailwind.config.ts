@@ -13,11 +13,20 @@ export default {
                 fadeIn: {
                     '0%': { opacity: '0' },
                     '100%': { opacity: '1' },
+                },
+                "spinner": {
+                    "0%": {
+                        "opacity": "1"
+                    },
+                    "100%": {
+                        "opacity": "0.15"
+                    }
                 }
             },
             animation: {
-                'fade-in': 'fadeIn 0.5s ease-in-out forwards'
-            }
+                'fade-in': 'fadeIn 0.5s ease-in-out forwards',
+                "spinner": "spinner 1.2s linear infinite"
+            },
         }
     },
     plugins:[scrollbarHide],

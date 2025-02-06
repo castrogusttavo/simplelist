@@ -1,5 +1,9 @@
+'use client';
+
 import { ColorPicker } from '@/app/components/radioButton';
+import { SwitchTask } from '@/app/components/switch';
 import { Icon } from '@houstonicons/pro';
+import { useState } from 'react';
 
 interface ListProps {
   icon: string;
@@ -101,13 +105,21 @@ export function EditTaskModal({
   onClearAll,
   onShowCompleted,
 }: EditTaskModalProps) {
+  const [checked, setChecked] = useState(false);
+
   return (
-    //
     <div className='flex flex-col py-4 px-3 rounded-[32px] w-[212px] backdrop-blur bg-[#F7F7F7]/5 shadow-modal z-[90]'>
-      <div className='hover:bg-[#f7f7f71a] w-full h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'>
-        <button onClick={onShowCompleted}>
+      <div
+        onClick={() => {
+          onShowCompleted();
+          setChecked(!checked);
+        }}
+        className='hover:bg-[#f7f7f71a] w-full justify-between h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'
+      >
+        <button>
           <span>Show completed</span>
         </button>
+        <SwitchTask checked={checked} />
       </div>
       <div className='hover:bg-[#f7f7f71a] w-full h-10 text-sm rounded-xl text-[#f7f7f766] font-bold px-2 transition-all duration-200 flex items-center'>
         <button onClick={onClearAll}>

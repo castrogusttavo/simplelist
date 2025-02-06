@@ -1,5 +1,5 @@
 import { TaskContainer } from '@/app/components/taskContainer';
-import type { Task } from '@/app/lib/taskService';
+import type { Task } from '@/app/services/taskService';
 
 interface TaskProps {
   tasks: Task[] | undefined;

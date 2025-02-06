@@ -6,7 +6,7 @@ import {
   TooltipRoot,
   TooltipTrigger,
 } from '@/app/components/tooltip';
-import { getListById } from '@/app/lib/listService';
+import { getListById } from '@/app/services/listService';
 import {
   Copy01Icon,
   Delete02Icon,

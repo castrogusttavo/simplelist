@@ -11,6 +11,7 @@ import {
   TooltipTrigger,
 } from '@/app/components/tooltip';
 import { useCreateList } from '@/app/hooks/useList';
+import type { List } from '@/app/services/listService';
 import { Add01Icon } from '@houstonicons/pro';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
@@ -18,30 +19,42 @@ import { useEffect, useState } from 'react';
 interface SearchBarProps {
   findValue: string;
   onChangeValue: (value: string) => void;
+  lists: List[] | undefined;
 }
 
-export function ListsActions({ findValue, onChangeValue }: SearchBarProps) {
+export function ListsActions({
+  findValue,
+  onChangeValue,
+  lists,
+}: SearchBarProps) {
   const [createList, setCreateList] = useState(false);
   const [listName, setListName] = useState('');
   const [icon, setIcon] = useState('smile');
   const [color, setColor] = useState('#CBCBCB');
+  const [isFocus, setIsFocus] = useState(false);
 
   const createListMutation = useCreateList();
   const queryClient = useQueryClient();
 
   function createNewList() {
-    setCreateList(!createList);
+    setCreateList((prev) => !prev);
+    setIsFocus((prev) => !prev);
+    if (listName === '/') {
+      setListName('');
+    }
   }
 
-  useEffect((): (() => void) => {
+  useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === '/') {
+        event.preventDefault();
+        setListName('');
         createNewList();
       }
     }
 
     window.addEventListener('keydown', handleKeyDown);
-    return (): void => window.removeEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   function handleCreateList(listName: string, icon: string, color: string) {
@@ -65,8 +78,13 @@ export function ListsActions({ findValue, onChangeValue }: SearchBarProps) {
   }
 
   return (
-    <div className='flex justify-between gap-2 w-full mb-5'>
-      <SearchBar onChangeValue={onChangeValue} findValue={findValue} />
+    <div
+      className={`flex gap-2 w-full mb-5 ${lists?.length === 0 ? 'justify-end' : 'justify-between'}`}
+    >
+      {!lists ||
+        (lists.length > 0 && (
+          <SearchBar onChangeValue={onChangeValue} findValue={findValue} />
+        ))}
       <div className='z-50'>
         <TooltipProvider>
           <TooltipRoot>
@@ -109,6 +127,7 @@ export function ListsActions({ findValue, onChangeValue }: SearchBarProps) {
             setIcon={setIcon}
             color={color}
             setColor={setColor}
+            autoFocus={isFocus}
           />
         </div>
       )}

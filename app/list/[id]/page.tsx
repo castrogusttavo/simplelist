@@ -1,5 +1,6 @@
 'use client';
 
+import { Spinner } from '@/app/components/spinner';
 import {
   TasksActionsFooter,
   TasksActionsHeader,
@@ -7,14 +8,8 @@ import {
 import { TasksListUser } from '@/app/components/ui/app/tasksListUser';
 import { useGetListById } from '@/app/hooks/useList';
 import { useDeleteAllTasks, useGetTasksForList } from '@/app/hooks/useTask';
-import type { List } from '@/app/lib/listService';
-import type { Task } from '@/app/lib/taskService';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
-
-interface ListProps {
-  listName: List[] | undefined;
-}
 
 export default function TasksBoard() {
   const params = useParams<{ id: string }>();
@@ -26,8 +21,19 @@ export default function TasksBoard() {
 
   const [showCompleted, setShowCompleted] = useState(false);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error?.message}</div>;
+  if (isLoading)
+    return (
+      <div className='w-full min-h-full flex items-center justify-center'>
+        <Spinner />
+      </div>
+    );
+
+  if (isError)
+    return (
+      <div className='w-full min-h-full flex items-center justify-center'>
+        Error: {error?.message}
+      </div>
+    );
 
   const filteredTasks = showCompleted
     ? tasks?.filter((task) => task.isCompleted)
@@ -44,12 +50,38 @@ export default function TasksBoard() {
   return (
     <>
       <TasksActionsHeader listName={list?.name} listId={listId} />
-      <TasksListUser tasks={filteredTasks} />
-      <TasksActionsFooter
-        tasks={tasks}
-        onClearAll={clearAllTasks}
-        onShowCompleted={toggleShowCompleted}
-      />
+      {tasks?.length === 0 ? (
+        <>
+          <img
+            src='/bg/all-completed.png'
+            alt='Not found tasks'
+            className='w-[336px] m-auto mt-0'
+          />
+          <span className='text-sm font-medium text-center text-[#f7f7f766]'>
+            This list is lonely. Add some items.
+          </span>
+        </>
+      ) : (
+        <>
+          {showCompleted &&
+          tasks?.length &&
+          tasks.length > 0 &&
+          tasks?.every((task) => task.isCompleted) ? (
+            <img
+              src='/bg/all-completed.png'
+              alt='All tasks completed'
+              className='w-[336px]'
+            />
+          ) : (
+            <TasksListUser tasks={filteredTasks} />
+          )}
+          <TasksActionsFooter
+            tasks={tasks}
+            onClearAll={clearAllTasks}
+            onShowCompleted={toggleShowCompleted}
+          />
+        </>
+      )}
     </>
   );
 }

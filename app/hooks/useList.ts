@@ -1,18 +1,18 @@
 import {
-  type UseMutationResult,
-  type UseQueryResult,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
-import {
   type List,
   createList,
   deleteList,
   getListById,
   getLists,
   updateList,
-} from '../lib/listService';
+} from '@/app/services/listService';
+import {
+  type UseMutationResult,
+  type UseQueryResult,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 
 export function useGetLists(): UseQueryResult<List[], Error> {
   return useQuery({ queryKey: ['lists'], queryFn: getLists });

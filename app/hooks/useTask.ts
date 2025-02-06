@@ -1,11 +1,4 @@
 import {
-  type UseMutationResult,
-  type UseQueryResult,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
-import {
   type Task,
   createTask,
   deleteAllTasksForList,
@@ -14,7 +7,14 @@ import {
   getTasks,
   getTasksForList,
   updateTask,
-} from '../lib/taskService';
+} from '@/app/services/taskService';
+import {
+  type UseMutationResult,
+  type UseQueryResult,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 
 export function useGetTasks(): UseQueryResult<Task[], Error> {
   return useQuery({ queryKey: ['tasks'], queryFn: getTasks });

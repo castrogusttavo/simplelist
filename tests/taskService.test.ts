@@ -1,5 +1,3 @@
-// tests/taskService.test.ts
-import { beforeEach, describe, expect, it } from 'vitest';
 import {
   createTask,
   deleteTask,
@@ -7,7 +5,8 @@ import {
   getTasks,
   getTasksForList,
   updateTask,
-} from '../app/lib/taskService';
+} from '@/app/services/taskService';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 const localStorageMock = (() => {
   let store: Record<string, string> = {};
