@@ -29,7 +29,7 @@ export function Overlay() {
 export function Container({ children, className }: ContainerProps) {
   return (
     <div
-      className={`hidden md:block md:relative inset-0 w-[480px] h-[496px] rounded-[32px] border border-[#FFFFFF0C]/20 shrink-0 backdrop-blur-xl bg-[#282828B2] ${className}`}
+      className={`hidden md:flex md:relative inset-0 w-[480px] h-[496px] rounded-[32px] border border-[#FFFFFF0C]/20 shrink-0 backdrop-blur-xl bg-[#282828B2] md:justify-between md:text-center ${className}`}
     >
       {children}
     </div>
@@ -43,7 +43,7 @@ export function ApplicationContainer({ children, className }: ContainerProps) {
         <Overlay />
         <div className='absolute inset-0 flex justify-center items-center min-h-min md:min-h-0'>
           <Container className={className}>{children}</Container>
-          <div className='block md:hidden w-full bg-[#282828B2] p-2.5 min-h-screen'>
+          <div className='block md:hidden w-full bg-[#282828B2] p-2.5 min-h-screen text-center'>
             {children}
           </div>
         </div>
