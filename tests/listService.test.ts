@@ -1,11 +1,11 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   createList,
   deleteList,
   getListById,
   getLists,
   updateList,
-} from '@/app/services/listService';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+} from '../app/services/listService';
 
 const localStorageMock = (() => {
   let store: Record<string, string> = {};

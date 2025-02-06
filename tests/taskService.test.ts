@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import {
   createTask,
   deleteTask,
@@ -5,8 +6,7 @@ import {
   getTasks,
   getTasksForList,
   updateTask,
-} from '@/app/services/taskService';
-import { beforeEach, describe, expect, it } from 'vitest';
+} from '../app/services/taskService';
 
 const localStorageMock = (() => {
   let store: Record<string, string> = {};
