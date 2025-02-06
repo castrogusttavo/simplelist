@@ -1,6 +1,7 @@
 import { IconSettings } from '@/app/components/button';
 import { DragAndDrop } from '@/app/components/listSettings';
 import { CustomListModal } from '@/app/components/modal';
+import { Draggable } from '@hello-pangea/dnd';
 import { Icon } from '@houstonicons/pro';
 import { useRouter } from 'next/navigation';
 import { type ChangeEvent, useRef, useState } from 'react';
@@ -12,6 +13,7 @@ interface ListProps {
   iconName: string;
   totalTasks: number;
   listId: string;
+  index: number;
 }
 
 interface ListContainerProps extends ListProps {
@@ -27,6 +29,7 @@ export function ListContainer({
   listId,
   openModalId,
   setOpenModalId,
+  index,
 }: ListContainerProps) {
   const [showSettings, setShowSettings] = useState(false);
   const isModalOpen = openModalId === listId;
@@ -81,53 +84,63 @@ export function ListContainer({
   };
 
   return (
-    <div className='relative' onClick={handleContainerClick}>
-      <div className='flex justify-between items-center p-3 rounded-[20px] bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10 group transition-all duration-500'>
-        <div className='flex gap-4 items-center'>
-          <IconSettings onClick={handleModalToggle}>
-            <Icon
-              color={iconColor}
-              iconName={iconName}
-              size={24}
-              type={'rounded'}
-              variant={'stroke'}
-              strokeWidth={1.5}
-            />
-          </IconSettings>
-          <input
-            ref={inputRef}
-            value={listName}
-            onChange={handleNameChange}
-            onBlur={handleNameBlur}
-            className='text-[#F7F7F7]/70 text-sm font-semibold bg-transparent border-none outline-none'
-          />
-        </div>
-        {!showSettings && (
-          <span className='text-[#F7F7F7]/70 text-sm font-medium group-hover:hidden h-6 w-6 text-center'>
-            {totalTasks}
-          </span>
-        )}
+    <Draggable draggableId={listId} index={index}>
+      {(provided) => (
         <div
-          onClick={handleSettingsClick}
-          className={`${showSettings ? 'block' : 'hidden group-hover:block'}`}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+          className='relative'
+          onClick={handleContainerClick}
         >
-          <DragAndDrop
-            listId={listId}
-            showSettings={showSettings}
-            setShowSettings={setShowSettings}
-          />
-        </div>
-      </div>
-      {isModalOpen && (
-        <div className='fixed z-10' onClick={(e) => e.stopPropagation()}>
-          <CustomListModal
-            icon={currentIcon}
-            color={currentColor}
-            setIcon={(icon) => handleUpdate({ iconName: icon })}
-            setColor={(color) => handleUpdate({ iconColor: color })}
-          />
+          <div className='flex justify-between items-center p-3 rounded-[20px] bg-[#F7F7F7]/5 hover:bg-[#F7F7F7]/10 group transition-all duration-500'>
+            <div className='flex gap-4 items-center'>
+              <IconSettings onClick={handleModalToggle}>
+                <Icon
+                  color={iconColor}
+                  iconName={iconName}
+                  size={24}
+                  type={'rounded'}
+                  variant={'stroke'}
+                  strokeWidth={1.5}
+                />
+              </IconSettings>
+              <input
+                ref={inputRef}
+                value={listName}
+                onChange={handleNameChange}
+                onBlur={handleNameBlur}
+                className='text-[#F7F7F7]/70 text-sm font-semibold bg-transparent border-none outline-none'
+              />
+            </div>
+            {!showSettings && (
+              <span className='text-[#F7F7F7]/70 text-sm font-medium group-hover:hidden h-6 w-6 text-center'>
+                {totalTasks}
+              </span>
+            )}
+            <div
+              onClick={handleSettingsClick}
+              className={`${showSettings ? 'block' : 'hidden group-hover:block'}`}
+            >
+              <DragAndDrop
+                listId={listId}
+                showSettings={showSettings}
+                setShowSettings={setShowSettings}
+              />
+            </div>
+          </div>
+          {isModalOpen && (
+            <div className='fixed z-10' onClick={(e) => e.stopPropagation()}>
+              <CustomListModal
+                icon={currentIcon}
+                color={currentColor}
+                setIcon={(icon) => handleUpdate({ iconName: icon })}
+                setColor={(color) => handleUpdate({ iconColor: color })}
+              />
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </Draggable>
   );
 }

@@ -5,6 +5,7 @@ import {
   getListById,
   getLists,
   updateList,
+  updateListsOrder,
 } from '@/app/services/listService';
 import {
   type UseMutationResult,
@@ -73,6 +74,22 @@ export const useUpdateList = (): UseMutationResult<
     },
   });
 };
+
+export function useUpdateListsOrder(): UseMutationResult<
+  void,
+  Error,
+  List[],
+  unknown
+> {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (newLists: List[]): Promise<void> => updateListsOrder(newLists),
+    onSuccess: async (): Promise<void> => {
+      await queryClient.invalidateQueries({ queryKey: ['lists'] });
+    },
+  });
+}
 
 export const useDeleteList = (): UseMutationResult<
   void,

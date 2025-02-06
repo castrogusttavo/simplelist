@@ -74,6 +74,10 @@ export async function updateList(
   return updatedList;
 }
 
+export async function updateListsOrder(newLists: List[]): Promise<void> {
+  saveListsToStorage(newLists);
+}
+
 export async function deleteList(id: string): Promise<void> {
   const lists = getListsFromStorage();
   const index = lists.findIndex((list: List): boolean => list.id === id);

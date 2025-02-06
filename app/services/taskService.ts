@@ -75,6 +75,10 @@ export async function updateTask(
   return updatedTask;
 }
 
+export async function updateTasksOrder(newTasks: Task[]): Promise<void> {
+  saveTasksToStorage(newTasks);
+}
+
 export async function deleteTask(id: string): Promise<void> {
   const tasks = loadTasksFromStorage();
   const index = tasks.findIndex((task: Task): boolean => task.id === id);

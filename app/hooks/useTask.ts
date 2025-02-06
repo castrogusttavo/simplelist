@@ -7,6 +7,7 @@ import {
   getTasks,
   getTasksForList,
   updateTask,
+  updateTasksOrder,
 } from '@/app/services/taskService';
 import {
   type UseMutationResult,
@@ -94,6 +95,22 @@ export const useDeleteTask = (): UseMutationResult<
     },
   });
 };
+
+export function useUpdateTasksOrder(): UseMutationResult<
+  void,
+  Error,
+  Task[],
+  unknown
+> {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (newTasks: Task[]): Promise<void> => updateTasksOrder(newTasks),
+    onSuccess: async (): Promise<void> => {
+      await queryClient.invalidateQueries({ queryKey: ['tasks'] });
+    },
+  });
+}
 
 export const useDeleteAllTasks = (): UseMutationResult<
   void,
