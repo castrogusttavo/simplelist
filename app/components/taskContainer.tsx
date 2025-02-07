@@ -60,6 +60,8 @@ export function TaskContainer({ taskId, completed, name, index }: TaskProps) {
               value={taskName}
               onChange={handleNameChange}
               onBlur={handleNameBlur}
+              size={taskName.length}
+              readOnly={window.innerWidth < 768}
               className='text-[#F7F7F7]/50 group-hover:text-[#F7F7F7]/70 text-sm font-semibold bg-transparent border-none outline-none cursor-pointer'
             />
           </div>

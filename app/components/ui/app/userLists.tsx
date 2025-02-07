@@ -46,7 +46,7 @@ export function UserLists({ searchTerm, lists }: TaskListContainerProps) {
         <Droppable droppableId={'droppable'} type='list' direction={'vertical'}>
           {(provided, snapshot) => (
             <div
-              className='flex flex-col gap-2 overflow-visible scrollbar-hide transition-all duration-500 flex-1'
+              className='flex flex-col gap-2 overflow-hidden scrollbar-hide transition-all duration-500 flex-1'
               ref={provided.innerRef}
               {...provided.droppableProps}
             >

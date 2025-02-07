@@ -32,7 +32,7 @@ export function TasksListUser({ tasks }: TaskProps) {
   }
 
   return (
-    <div className='flex-1 transition-transform duration-500'>
+    <div className='flex-1 transition-transform duration-500 overflow-auto scrollbar-hide'>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId={'droppable'} type='task' direction={'vertical'}>
           {(provided, snapshot) => (
