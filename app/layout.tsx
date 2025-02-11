@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
 import './globals.css';
 import { ApplicationContainer } from '@/app/components/appContainer';
+import { Footer } from '@/app/components/ui/footer';
 import { Header } from '@/app/components/ui/header';
 import { QueryProvider } from '@/app/providers/queryProvider';
 
