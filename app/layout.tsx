@@ -31,6 +31,7 @@ export default function RootLayout({
           <ApplicationContainer className={'flex flex-col p-3 overflow-hidden'}>
             {children}
           </ApplicationContainer>
+          <Footer />
         </QueryProvider>
       </body>
     </html>
