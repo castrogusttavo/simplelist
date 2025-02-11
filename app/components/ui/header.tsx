@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/app/components/button';
-import { Logout03Icon } from '@houstonicons/pro';
+import { CodeSquareIcon } from '@houstonicons/pro';
 
 export function Header() {
   return (
@@ -15,7 +15,7 @@ export function Header() {
             'https://github.com/castrogusttavo/simpleList')
         }
       >
-        <Logout03Icon
+        <CodeSquareIcon
           size={24}
           color={'#F7F7F7'}
           variant={'stroke'}
